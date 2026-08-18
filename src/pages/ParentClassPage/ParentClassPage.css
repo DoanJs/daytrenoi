@@ -1,0 +1,29 @@
+
+.tier2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;align-items:stretch}
+.prod{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  display:flex;flex-direction:column}
+.prod.hero-p{border:2px solid var(--o);box-shadow:0 14px 36px rgba(226,98,44,.13)}
+.ptop2{padding:20px 24px;color:#fff;background:var(--o)}
+.prod.p2 .ptop2{background:var(--g1)}
+.prod.p3 .ptop2{background:var(--ink)}
+.ptop2 .lv2{font-size:10.5px;letter-spacing:.19em;font-weight:700;opacity:.88}
+.ptop2 h3{margin:5px 0 0;font-size:21px;color:#fff;line-height:1.2}
+.ptop2 .sub2{font-size:13px;opacity:.9;margin-top:5px}
+.pbd2{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+.pricebig{font-size:30px;font-weight:800;color:var(--o-d);letter-spacing:-.025em;margin:0 0 4px}
+.pricebig small{font-size:13px;font-weight:500;color:var(--ink3);letter-spacing:0;display:block;margin-top:3px}
+.priceask{font-size:19px;font-weight:700;color:var(--ink);margin:0 0 4px}
+.forwho{background:var(--o-p);border-radius:9px;padding:12px 14px;font-size:13.5px;color:var(--ink2);margin:14px 0}
+.forwho b{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--o-d);margin-bottom:3px}
+.pbd2 ul{margin:0 0 14px;padding-left:19px;font-size:14px;color:var(--ink2)}
+.pbd2 ul li{margin-bottom:6px}
+.takeaway{background:#F6F1EA;border-radius:9px;padding:12px 14px;font-size:13.5px;color:var(--ink);margin:0 0 14px}
+.takeaway b{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
+.pbd2 .btn{margin-top:auto;width:100%;justify-content:center}
+.ladder{display:grid;gap:12px;margin-top:22px}
+.lrow{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);
+  border-radius:12px;padding:16px 20px}
+.lrow .lnum{width:30px;height:30px;border-radius:50%;background:var(--o);color:#fff;display:grid;
+  place-items:center;font-weight:800;font-size:14px;flex-shrink:0}
+.lrow b{display:block;font-size:15px;margin-bottom:3px}
+.lrow p{margin:0;font-size:13.5px;color:var(--ink2)}
