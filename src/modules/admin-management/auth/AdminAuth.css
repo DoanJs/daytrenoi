@@ -1,0 +1,265 @@
+.admin-login-page,
+.admin-auth-loading,
+.admin-auth-denied {
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at top left,
+      #fff0e6,
+      transparent 35%
+    ),
+    #f8f3ed;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+}
+
+.admin-login-card {
+  width: 100%;
+  max-width: 430px;
+
+  background: #fff;
+
+  border: 1px solid #eadfd4;
+  border-radius: 20px;
+
+  padding: 34px;
+
+  box-shadow:
+    0 20px 60px
+    rgba(72, 43, 25, 0.1);
+}
+
+.admin-login-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 30px;
+
+  font-weight: 800;
+  letter-spacing: 0.08em;
+
+  color: #2c211b;
+}
+
+.admin-login-logo {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* background: #e2622c; */
+  color: white;
+
+  font-size: 11px;
+}
+
+.admin-login-heading {
+  margin-bottom: 26px;
+}
+
+.admin-login-eyebrow {
+  display: block;
+
+  color: #c4501f;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  margin-bottom: 8px;
+}
+
+.admin-login-heading h1 {
+  margin: 0 0 8px;
+
+  font-size: 28px;
+  color: #2c211b;
+}
+
+.admin-login-heading p {
+  margin: 0;
+
+  color: #7b6c62;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.admin-login-field {
+  display: block;
+  margin-bottom: 17px;
+}
+
+.admin-login-field > span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  color: #44372e;
+}
+
+.admin-login-field input {
+  width: 100%;
+  height: 48px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #ddd0c5;
+  border-radius: 10px;
+
+  padding: 0 14px;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition: 0.15s;
+}
+
+.admin-login-field input:focus {
+  border-color: #e2622c;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(226, 98, 44, 0.1);
+}
+
+.admin-login-submit {
+  width: 100%;
+  height: 50px;
+
+  margin-top: 5px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #e2622c;
+  color: white;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: 0.15s;
+}
+
+.admin-login-submit:hover:not(:disabled) {
+  background: #c4501f;
+}
+
+.admin-login-submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.admin-login-error {
+  background: #fbede9;
+
+  border-left: 3px solid #b1442c;
+
+  padding: 10px 12px;
+
+  margin-bottom: 14px;
+
+  border-radius: 0 8px 8px 0;
+
+  color: #9f321e;
+
+  font-size: 13px;
+}
+
+.admin-login-back {
+  display: block;
+
+  margin-top: 20px;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  color: #7b6c62;
+
+  font-size: 13px;
+}
+
+.admin-login-back:hover {
+  color: #c4501f;
+}
+
+/* Loading */
+
+.admin-auth-loading {
+  flex-direction: column;
+  gap: 14px;
+
+  color: #6f6056;
+
+  font-size: 14px;
+}
+
+.admin-auth-spinner {
+  width: 38px;
+  height: 38px;
+
+  border: 4px solid #eadfd4;
+  border-top-color: #e2622c;
+
+  border-radius: 50%;
+
+  animation:
+    admin-spin 0.7s linear infinite;
+}
+
+@keyframes admin-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Không có quyền */
+
+.admin-auth-denied-box {
+  width: 100%;
+  max-width: 430px;
+
+  padding: 36px;
+
+  background: white;
+
+  border: 1px solid #eadfd4;
+  border-radius: 18px;
+
+  text-align: center;
+}
+
+.admin-auth-denied-icon {
+  font-size: 40px;
+
+  margin-bottom: 15px;
+}
+
+.admin-auth-denied-box h2 {
+  margin: 0 0 10px;
+
+  color: #2c211b;
+}
+
+.admin-auth-denied-box p {
+  color: #7b6c62;
+
+  line-height: 1.6;
+}

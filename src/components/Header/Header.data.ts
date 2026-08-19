@@ -21,7 +21,7 @@ export const headerMockData: HeaderData = {
       "page": "lop-cha-me"
     },
     {
-      "label": "Chương trình đào tạo",
+      "label": "Dành cho giáo viên",
       "href": "#dao-tao",
       "page": "dao-tao"
     },

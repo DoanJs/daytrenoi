@@ -11,36 +11,43 @@ export const booksPageMockData: BooksPageData = {
     "t007": "Giúp cha mẹ hiểu đúng về tự kỷ, can thiệp lấy gia đình làm trọng tâm, đánh giá và chọn mục tiêu cá nhân hoá. Kèm bảng kiểm và mẫu kế hoạch dạy con tại nhà dựa trên khoa học, dễ áp dụng.",
     "t008": "380.000đ",
     "t009": "Đặt sách qua Zalo",
+
     "t010": "Chuyên viên · Cha mẹ học sâu",
     "t011": "“29 giọng nói” — Hơn cả bật âm",
     "t012": "Hiểu sâu cách trẻ tiếp thu thế giới và hình thành giao tiếp. Cung cấp hàng chục phương pháp và công cụ can thiệp ngôn ngữ cụ thể, hiệu quả, dễ áp dụng.",
     "t013": "386.000đ",
     "t014": "Đặt sách qua Zalo",
+    
     "t015": "Giác quan · Hành vi · Ngôn ngữ",
     "t016": "Lên tiếng",
     "t017": "Cẩm nang thực hành giúp cha mẹ, giáo viên và chuyên viên hiểu đúng hệ thống giác quan, sàng lọc sớm khó khăn và “kê đơn giác quan — bốc thuốc ngôn ngữ” qua thiết kế hoạt động sinh hoạt hằng ngày, nhằm điều hoà cảm giác, hỗ trợ hành vi và phát triển giao tiếp lời nói tự nhiên, bền vững.",
     "t018": "399.000đ",
     "t019": "Đặt sách qua Zalo",
+
     "t020": "Chơi · Phát triển",
     "t021": "Chơi lớn",
     "t022": "Vai trò của chơi và mối liên hệ giữa chơi với ngôn ngữ. Kèm bảng kiểm phát triển, quy trình dạy kỹ năng, cách tương tác — chơi với trẻ kể cả trẻ có rào cản phát triển, gợi ý hoạt động chơi, lồng ghép chơi trong sinh hoạt và dùng chơi để dạy các kỹ năng khác.",
     "t023": "326.000đ",
     "t024": "Đặt sách qua Zalo",
+
     "t025": "Chậm nói · Vốn từ",
     "t026": "100 từ đầu tiên của bé",
     "t027": "Tổng hợp 100 từ trẻ HIỂU và NÓI được sớm nhất, nghiên cứu và thống kê từ 600 trẻ em Việt Nam ở cả ba miền. Giới thiệu lộ trình phát triển từ vựng theo từng giai đoạn, chia rõ bốn nhóm từ quan trọng — danh từ, động từ, từ cốt lõi, từ khái niệm — kèm hướng dẫn cụ thể cách phát triển từng nhóm.",
     "t028": "245.000đ",
     "t029": "Đặt sách qua Zalo",
+
     "t030": "Chơi để nói",
     "t031": "42 trò chơi giúp trẻ hay nói",
     "t032": "Nhận diện trẻ đang ở giai đoạn phát triển nào, đọc hiểu trẻ từ những hành vi mơ hồ, thiết kế hoạt động chơi phù hợp với năng lực hiện tại. Từng trò chơi được thiết kế chi tiết: bạn nói gì, làm gì, dùng gì.",
     "t033": "288.000đ",
     "t034": "Đặt sách qua Zalo",
+
     "t035": "Cha mẹ · 0–5 tuổi",
     "t036": "“Bản đồ” 5 năm đầu đời của con",
     "t037": "Cẩm nang giúp cha mẹ hiểu từng bước trưởng thành của trẻ 0–5 tuổi: theo dõi vận động, ngôn ngữ, nhận thức và kỹ năng xã hội; checklist phát triển cụ thể; phần ghi lại dấu mốc của con; và những dấu hiệu “cờ đỏ” của rối loạn phổ tự kỷ để phát hiện sớm.",
     "t038": "199.000đ",
     "t039": "Đặt sách qua Zalo",
+
     "t040": "Giá bìa cập nhật đến 08/2026. Đặt sách qua Zalo ",
     "t041": "0866620583",
     "t042": " — nhắn tên sách và số lượng, chúng tôi báo phí giao và thời gian nhận.",

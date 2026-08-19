@@ -11,7 +11,17 @@ export default function Header({ data, currentPage }: HeaderProps) {
     <nav className="top">
       <div className="nav-in">
         <a className="brand" href="#index">
-          <div className="owl">{data.owl}</div>
+          <div className="owl" style={{
+            width: 'auto',
+            height: '38px'
+          }}>
+            <img src="/images/speaks-owl-orange.png" alt="owl-orange"
+            style={{
+              height: '100%',
+              width: 'auto'
+            }}
+            />
+          </div>
           <div>
             <b>{data.brandTitle}</b>
             <span>{data.brandSubtitle}</span>

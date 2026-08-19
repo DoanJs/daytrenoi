@@ -1,0 +1,8 @@
+@import "../BookAdminModal/BookAdminModal.css";
+
+.course-admin-modal {
+  width: min(
+    820px,
+    100%
+  );
+}

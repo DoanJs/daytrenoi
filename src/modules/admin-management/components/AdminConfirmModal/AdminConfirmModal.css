@@ -1,0 +1,83 @@
+.admin-confirm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99990;
+
+  display: grid;
+  place-items: center;
+
+  padding: 20px;
+
+  background:
+    rgba(36, 28, 22, .58);
+
+  backdrop-filter:
+    blur(4px);
+}
+
+.admin-confirm-modal {
+  width: min(
+    420px,
+    100%
+  );
+
+  padding: 25px;
+
+  border-radius: 16px;
+
+  background: #fff;
+
+  text-align: center;
+
+  box-shadow:
+    0 24px 70px
+    rgba(36, 28, 22, .22);
+}
+
+.admin-confirm-icon {
+  width: 48px;
+  height: 48px;
+
+  display: grid;
+  place-items: center;
+
+  margin:
+    0 auto 13px;
+
+  border-radius: 50%;
+
+  background: #fff0ea;
+
+  color: #b8431a;
+
+  font-size: 23px;
+  font-weight: 900;
+}
+
+.admin-confirm-modal h3 {
+  margin:
+    0 0 8px;
+
+  color: #2f251e;
+
+  font-size: 19px;
+}
+
+.admin-confirm-modal p {
+  margin: 0;
+
+  color: #76695f;
+
+  font-size: 13px;
+
+  line-height: 1.55;
+}
+
+.admin-confirm-actions {
+  display: flex;
+  justify-content: center;
+
+  gap: 9px;
+
+  margin-top: 20px;
+}

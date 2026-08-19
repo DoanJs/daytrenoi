@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "src/modules/book-order/services/bookOrderFirestoreRepository.example.ts"  ]
 }

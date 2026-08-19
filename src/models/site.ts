@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore";
+
 export interface PageData {
   texts: Record<string, string>;
   images: Record<string, string>;
@@ -41,4 +43,74 @@ export interface FloatingActionsData {
   phoneUrl: string;
   zaloTitle: string;
   phoneTitle: string;
+}
+
+export interface BookModel {
+  id: string;
+
+  name: string;
+  category: string;
+  description: string;
+
+  price: number;
+
+  coverUrl: string;
+  alt: string;
+
+  zaloUrl?: string;
+
+  // Có hiển thị trên web không
+  isActive: boolean;
+
+  // Thứ tự hiển thị
+  sortOrder: number;
+
+  // Nếu muốn gắn nhãn
+  badge?: string;
+
+  // Ví dụ "Cha mẹ", "Chuyên viên", ...
+  targetAudience?: string[];
+
+  createAt: Timestamp;
+  updateAt: Timestamp;
+}
+
+export interface CourseModel {
+  id: string;
+
+  /**
+   * VD:
+   * ancs-1
+   * choi-2
+   * mxlh-4
+   */
+  courseId: string;
+
+  title: string;
+
+  schedule: string;
+
+  location: string;
+
+  tuitionFee: number;
+
+  earlyBirdFee?: number;
+
+  earlyBirdDeadline?: string;
+
+  registerUrl: string;
+
+  giftsRemaining?: number;
+
+  giftDescription?: string;
+
+  note?: string;
+
+  isActive: boolean;
+
+  sortOrder: number;
+
+  createAt: Timestamp;
+
+  updateAt: Timestamp;
 }

@@ -8,6 +8,8 @@ const validPages = new Set([
   "chuyen-giao",
   "sach",
   "lien-he",
+   // Admin
+  "admin",
 ]);
 
 const readHash = () => {

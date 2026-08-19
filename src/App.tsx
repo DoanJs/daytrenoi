@@ -11,6 +11,8 @@ import BooksPage from "./pages/BooksPage/BooksPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import { useHashRoute } from "./hooks/useHashRoute";
 import { getSiteData, mockSiteData, SiteData } from "./services/siteDataService";
+import { AdminManagementPage } from "./modules/admin-management";
+import AdminGuard from "./modules/admin-management/auth/AdminGuard";
 
 export default function App() {
   const { page } = useHashRoute();
@@ -31,6 +33,19 @@ export default function App() {
       mounted = false;
     };
   }, []);
+
+  /**
+   * ========================================
+   * ADMIN
+   * ========================================
+   */
+  if (page === "admin") {
+  return (
+    <AdminGuard>
+      <AdminManagementPage />
+    </AdminGuard>
+  );
+}
 
   const renderPage = () => {
     switch (page) {
