@@ -1,14 +1,350 @@
 import "./HomePage.css";
-import { HomePageData } from "./HomePage.types";
-import QuickTest from "../../components/QuickTest/QuickTest";
-import { QuickTestData } from "../../components/QuickTest/QuickTest.types";
+import { useMemo, useRef, useState } from "react";
+import { homeQuickTestData } from "./HomePage.data";
+import { HomePageData, HomeQuickTestConfig, QuickTestBand, QuickTestKey, QuickTestLevel } from "./HomePage.types";
+
+
+type AnswerMap = Record<number, number>;
+
+type RenderItem = {
+  index: number;
+  question?: string;
+  reverse?: 0 | 1;
+  group?: string;
+  isHeader?: boolean;
+};
+
+type FlaggedItem = {
+  group?: string;
+  question: string;
+  high: boolean;
+  kind: "miss" | "has";
+};
+
+function Html({ value }: { value: string }) {
+  return <span dangerouslySetInnerHTML={{ __html: value }} />;
+}
+
+function HomeQuickTest() {
+  const [testKey, setTestKey] = useState<QuickTestKey>("tu-ky");
+  const [age, setAge] = useState<string | null>(null);
+  const [answers, setAnswers] = useState<AnswerMap>({});
+  const [resultBand, setResultBand] = useState<QuickTestBand | null>(null);
+  const [resultScore, setResultScore] = useState(0);
+  const [error, setError] = useState("");
+  const resultRef = useRef<HTMLDivElement | null>(null);
+
+  const test = homeQuickTestData[testKey] as HomeQuickTestConfig;
+
+  const items = useMemo<RenderItem[]>(() => {
+    if (test.ageGroups) {
+      const group = test.ageGroups.find((item) => item[0] === age);
+      return group
+        ? group[2].map((question, index) => ({ index, question, reverse: 0 }))
+        : [];
+    }
+
+    if (test.groups) {
+      const output: RenderItem[] = [];
+      let index = 0;
+      test.groups.forEach(([groupName, questions]) => {
+        output.push({ index: -1, group: groupName, isHeader: true });
+        questions.forEach((question) => {
+          output.push({ index, question, reverse: 0, group: groupName });
+          index += 1;
+        });
+      });
+      return output;
+    }
+
+    return (test.items || []).map(([question, reverse], index) => ({
+      index,
+      question,
+      reverse,
+    }));
+  }, [test, age]);
+
+  const answerable = items.filter((item) => !item.isHeader);
+  const done = answerable.filter((item) => answers[item.index] !== undefined).length;
+
+  const score = useMemo(() => {
+    return answerable.reduce((total, item) => {
+      const answerIndex = answers[item.index];
+      if (answerIndex === undefined) return total;
+
+      const normalPoints = test.scale[answerIndex][1];
+      if (item.reverse !== 1) return total + normalPoints;
+
+      const reversedIndex = test.scale.length - 1 - answerIndex;
+      return total + test.scale[reversedIndex][1];
+    }, 0);
+  }, [answerable, answers, test]);
+
+  const flagged = useMemo<FlaggedItem[]>(() => {
+    const output: FlaggedItem[] = [];
+    answerable.forEach((item) => {
+      const answerIndex = answers[item.index];
+      if (answerIndex === undefined || !item.question) return;
+
+      let points = test.scale[answerIndex][1];
+      if (item.reverse === 1) {
+        points = test.scale[test.scale.length - 1 - answerIndex][1];
+      }
+      if (points < 1) return;
+
+      output.push({
+        group: item.group,
+        question: item.question,
+        high: points >= 2,
+        kind: item.reverse === 1 ? "has" : test.pos0 ? "miss" : "has",
+      });
+    });
+    return output;
+  }, [answerable, answers, test]);
+
+  const reset = (keepAge = true) => {
+    setAnswers({});
+    setResultBand(null);
+    setResultScore(0);
+    setError("");
+    if (!keepAge) setAge(null);
+  };
+
+  const selectTest = (key: QuickTestKey) => {
+    setTestKey(key);
+    setAge(null);
+    reset(false);
+  };
+
+  const handleResult = () => {
+    if (test.ageGroups && !age) {
+      setError("Bạn chọn nhóm tuổi của con trước nhé.");
+      return;
+    }
+    if (done < answerable.length) {
+      setError(`Còn ${answerable.length - done} câu chưa trả lời. Bạn trả lời hết để kết quả chính xác nhé.`);
+      return;
+    }
+
+    const band =
+      test.bands.find(([min, max]) => score >= min && score <= max) ||
+      test.bands[test.bands.length - 1];
+
+    setError("");
+    setResultScore(score);
+    setResultBand(band);
+    window.setTimeout(() => {
+      resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 30);
+  };
+
+  const renderFlagBlock = (title: string, list: FlaggedItem[]) => {
+    if (!list.length) return null;
+    let previousGroup = "";
+    return (
+      <>
+        <div className="tn-fg">{title} · {list.length} câu</div>
+        <ul className="tn-flags">
+          {list.map((item, index) => {
+            const showGroup = Boolean(item.group && item.group !== previousGroup);
+            if (item.group) previousGroup = item.group;
+            return (
+              <div key={`${item.question}-${index}`}>
+                {showGroup ? <li className="group">{item.group}</li> : null}
+                <li className={item.high ? "hi" : "mid"}><Html value={item.question} /></li>
+              </div>
+            );
+          })}
+        </ul>
+      </>
+    );
+  };
+
+  const maxScore = answerable.length * 2;
+  const position = maxScore ? Math.min(resultScore, maxScore) / maxScore * 100 : 0;
+  const miss = flagged.filter((item) => item.kind === "miss");
+  const has = flagged.filter((item) => item.kind === "has");
+  const level = resultBand?.[2] as QuickTestLevel | undefined;
+  const actions = level ? test.actions[level] || [] : [];
+
+  return (
+    <section id="test-nhanh">
+      <div className="wrap">
+        <div className="center" style={{ marginBottom: "26px" }}>
+          <div className="eyebrow">Miễn phí · không cần để lại thông tin</div>
+          <h2>Bốn bài test nhanh cho cha mẹ</h2>
+          <p className="lead">
+            Bộ câu hỏi rút ra từ chính bộ bảng kiểm chúng tôi dùng trong phòng khám. Anh/chị chỉ mất hai phút và thấy kết quả ngay — không phải điền số điện thoại mới được xem.
+          </p>
+        </div>
+
+        <div className="tn-wrap">
+          <div className="tn-tabs">
+            {(Object.keys(homeQuickTestData) as QuickTestKey[]).map((key) => {
+              const tab = homeQuickTestData[key];
+              return (
+                <button
+                  type="button"
+                  key={key}
+                  className={`tn-tab ${key === testKey ? "on" : ""}`}
+                  onClick={() => selectTest(key)}
+                >
+                  <span className="i">{tab.icon}</span>
+                  <b>{tab.title}</b>
+                  <span>{tab.sub}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="tn-body">
+            <p className="tn-intro"><Html value={test.intro} /></p>
+
+            {test.ageGroups ? (
+              <div className="tn-age">
+                <span className="tn-age-label">Con bạn mấy tuổi?</span>
+                {test.ageGroups.map(([id, label]) => (
+                  <button
+                    type="button"
+                    key={id}
+                    className={age === id ? "on" : ""}
+                    onClick={() => {
+                      setAge(id);
+                      reset(true);
+                    }}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+
+            <div className="tn-questions">
+              {test.ageGroups && !age ? (
+                <p className="muted" style={{ padding: "18px 0" }}>Chọn nhóm tuổi của con để bắt đầu.</p>
+              ) : (
+                items.map((item, itemIndex) => {
+                  if (item.isHeader) {
+                    return <div className="tn-gh" key={`header-${itemIndex}`}>{item.group}</div>;
+                  }
+                  return (
+                    <div className="tn-q" key={`${testKey}-${age || "all"}-${item.index}`}>
+                      <p><Html value={item.question || ""} /></p>
+                      <div className="tn-opts">
+                        {test.scale.map(([label], optionIndex) => (
+                          <label key={label} className={answers[item.index] === optionIndex ? "selected" : ""}>
+                            <input
+                              type="radio"
+                              name={`${testKey}-q-${item.index}`}
+                              checked={answers[item.index] === optionIndex}
+                              onChange={() => {
+                                setAnswers((current) => ({ ...current, [item.index]: optionIndex }));
+                                setResultBand(null);
+                                setError("");
+                              }}
+                            />
+                            <span>{label}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+
+            <div className="tn-foot">
+              <button type="button" className="btn p" onClick={handleResult}>Xem kết quả</button>
+              <button type="button" className="btn s" onClick={() => reset(true)}>Làm lại</button>
+              <span className="tn-prog">
+                {answerable.length ? `Đã trả lời ${done}/${answerable.length} câu` : ""}
+              </span>
+            </div>
+
+            {error ? <div className="tn-error">{error}</div> : null}
+
+            {resultBand ? (
+              <div ref={resultRef} className={`tn-res on ${resultBand[2]}`}>
+                <div className="tn-top">
+                  <div className="tn-num">
+                    <b>{resultScore}</b>
+                    <span>trên {maxScore} điểm</span>
+                  </div>
+                  <div className="tn-meta">
+                    <div className="lv">Kết quả · {test.title}</div>
+                    <h4>{resultBand[3]}</h4>
+                  </div>
+                </div>
+
+                <div className="tn-bar">
+                  {test.bands.map((band, index) => {
+                    const width = maxScore ? ((band[1] - band[0] + 1) / (maxScore + 1)) * 100 : 0;
+                    return <i key={index} className={`zone z${index + 1}`} style={{ flex: `0 0 ${width}%` }} />;
+                  })}
+                  <i className="dot" style={{ left: `${position}%` }} />
+                </div>
+
+                <p><Html value={resultBand[4]} /></p>
+
+                <div className="tn-block">
+                  <b className="bh">📑 Phân tích từng câu trả lời của bạn</b>
+                  {!flagged.length ? (
+                    <p className="tn-sub" style={{ margin: 0 }}>
+                      Bạn đánh dấu con đạt toàn bộ các mục trong bài này. Không có câu nào cần theo dõi thêm — bạn cứ tiếp tục như đang làm.
+                    </p>
+                  ) : (
+                    <>
+                      {renderFlagBlock(test.labMiss, miss)}
+                      {renderFlagBlock(test.labHas, has)}
+                      <p className="tn-sub" style={{ marginTop: "14px" }}><b style={{ color: "var(--o)" }}>●</b> rõ ràng <span style={{ display: "inline-block", width: 22 }} /> <b>○</b> lúc có lúc không</p>
+                      <p className="tn-sub" style={{ marginTop: "6px" }}>Đây chính là những điều đáng nói nhất nếu bạn cho con đi khám. Bạn chụp lại màn hình này là đủ — không cần nhớ hay kể lại.</p>
+                    </>
+                  )}
+                </div>
+
+                <div className="tn-block">
+                  <b className="bh">✅ Việc bạn làm được ngay tuần này</b>
+                  <ol className="tn-do">
+                    {actions.map((action, index) => <li key={index}><Html value={action} /></li>)}
+                  </ol>
+                </div>
+
+                <div className="tn-block tn-next">
+                  <b className="bh">Nếu bạn muốn đi tiếp</b>
+                  <p className="nx">Bạn không cần làm gì thêm hôm nay. Những việc phía trên là đủ để bắt đầu. Ba lối dưới đây chỉ dành cho khi bạn thấy cần.</p>
+                  <div className="btns">
+                    {testKey === "cham-noi" ? <a className="btn s" href="#phu-huynh">Đọc kỹ hơn về chậm nói</a> : null}
+                    <a className="btn s" href="#phu-huynh/kham">Xem quy trình khám diễn ra thế nào</a>
+                    <a className="btn s" href="#lop-cha-me">Xem lớp cho cha mẹ</a>
+                    <a className="btn s" href="https://zalo.me/0866620583" target="_blank" rel="noreferrer">Hỏi một câu qua Zalo</a>
+                  </div>
+                </div>
+
+                <div className="tn-save">
+                  <button type="button" className="btn s" onClick={() => window.print()}>🖨 Lưu hoặc in kết quả này</button>
+                  <span className="muted">Kết quả chỉ nằm trên máy bạn. Chúng tôi không lưu và không cần bạn để lại số điện thoại.</span>
+                </div>
+              </div>
+            ) : null}
+
+            <p className="tn-disc">
+              {test.note ? <><Html value={test.note} /><br /></> : null}
+              Đây là công cụ định hướng cho cha mẹ, <b>không phải chẩn đoán y khoa</b>. Kết quả không thay thế cho một buổi lượng giá đầy đủ với chuyên viên. Nếu bạn lo lắng về con, hãy đặt lịch khám thay vì chờ đợi.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 interface Props {
   data: HomePageData;
-  quickTestData: QuickTestData;
+  /** Giữ optional để App cũ vẫn truyền quickTestData mà không lỗi TypeScript. */
+  quickTestData?: unknown;
 }
 
-export default function HomePage({ data, quickTestData }: Props) {
+export default function HomePage({ data }: Props) {
   return (
     <div className={"pg"}>
       <div className={"hero"}>
@@ -89,7 +425,7 @@ export default function HomePage({ data, quickTestData }: Props) {
           </div>
         </div>
       </div>
-      <QuickTest data={quickTestData} />
+      <HomeQuickTest />
       <section>
         <div className={"wrap"}>
           <div className={"center"} style={{ marginBottom: "30px" }}>

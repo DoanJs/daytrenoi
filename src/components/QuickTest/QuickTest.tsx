@@ -1,188 +1,308 @@
 import { useMemo, useRef, useState } from "react";
 import "./QuickTest.css";
-import { QuickTestData, QuickTestDefinition } from "./QuickTest.types";
+import { quickTestData as defaultQuickTestData } from "./QuickTest.data";
+import {
+  QuickTestData,
+  QuickTestDefinition,
+  QuickTestItem,
+  QuickTestKey,
+  QuickTestLevel,
+} from "./QuickTest.types";
 
-interface QuickTestProps {
-  data: QuickTestData;
+interface Props {
+  /**
+   * Có thể truyền data từ ngoài vào.
+   * Nếu không truyền, component dùng QuickTest.data.ts.
+   */
+  data?: QuickTestData;
 }
 
-interface FlatQuestion {
-  key: number;
-  text: string;
-  reverse: number;
+interface RenderItem extends QuickTestItem {
+  key: string;
+}
+
+interface FlaggedItem {
   group?: string;
+  text: string;
+  high: boolean;
+  kind: "miss" | "has";
 }
 
-const renderRichText = (value?: string) => {
-  if (!value) return null;
-  const parts = value.split(/(<b>.*?<\/b>|<br\s*\/?>)/gi).filter(Boolean);
-  return parts.map((part, index) => {
-    const bold = part.match(/^<b>(.*?)<\/b>$/i);
-    if (bold) return <b key={index}>{bold[1]}</b>;
-    if (/^<br\s*\/?>$/i.test(part)) return <br key={index} />;
-    return <span key={index}>{part}</span>;
-  });
-};
+export default function QuickTest({
+  data = defaultQuickTestData,
+}: Props) {
+  const [testKey, setTestKey] = useState<QuickTestKey>("tu-ky");
+  const [ageId, setAgeId] = useState("");
+  const [answers, setAnswers] = useState<Record<string, number>>({});
+  const [resultLevel, setResultLevel] =
+    useState<QuickTestLevel | null>(null);
+  const [error, setError] = useState("");
 
-export default function QuickTest({ data }: QuickTestProps) {
-  const [testId, setTestId] = useState(data.tests[0]?.id ?? "");
-  const [ageId, setAgeId] = useState<string | null>(null);
-  const [answers, setAnswers] = useState<Record<number, number>>({});
-  const [result, setResult] = useState<{ score: number; band: QuickTestDefinition["bands"][number] } | null>(null);
-  const [name, setName] = useState("");
-  const [childAge, setChildAge] = useState("");
-  const [phone, setPhone] = useState("");
-  const [message, setMessage] = useState("");
   const resultRef = useRef<HTMLDivElement | null>(null);
 
-  const current = useMemo(
-    () => data.tests.find((item) => item.id === testId) ?? data.tests[0],
-    [data.tests, testId]
-  );
+  const test = data.tests[testKey];
 
-  const questions = useMemo<FlatQuestion[]>(() => {
-    if (!current) return [];
+  const renderItems = useMemo<RenderItem[]>(() => {
+    if (test.ageGroups) {
+      const ageGroup = test.ageGroups.find((item) => item.id === ageId);
 
-    if (current.ageGroups) {
-      const group = current.ageGroups.find((item) => item.id === ageId);
-      return (group?.questions ?? []).map((text, index) => ({
-        key: index,
+      if (!ageGroup) return [];
+
+      return ageGroup.items.map((text, index) => ({
+        key: `age-${ageGroup.id}-${index}`,
         text,
-        reverse: 0,
+        reverseScore: false,
       }));
     }
 
-    if (current.groups) {
-      let index = 0;
-      return current.groups.flatMap((group) =>
-        group.questions.map((text) => ({
-          key: index++,
-          text,
-          reverse: 0,
-          group: group.title,
+    if (test.groups) {
+      return test.groups.flatMap((group, groupIndex) =>
+        group.items.map((item, itemIndex) => ({
+          ...item,
+          group: group.name,
+          key: `group-${groupIndex}-${itemIndex}`,
         }))
       );
     }
 
-    return (current.items ?? []).map(([text, reverse], index) => ({
-      key: index,
-      text,
-      reverse,
+    return (test.items ?? []).map((item, index) => ({
+      ...item,
+      key: `item-${index}`,
     }));
-  }, [current, ageId]);
+  }, [test, ageId]);
 
-  const resetAnswers = () => {
-    setAnswers({});
-    setResult(null);
-    setMessage("");
-  };
+  const answeredCount = Object.keys(answers).length;
 
-  const selectTest = (id: string) => {
-    setTestId(id);
-    setAgeId(null);
-    resetAnswers();
+  const calculateItemScore = (
+    currentTest: QuickTestDefinition,
+    item: RenderItem,
+    answerIndex: number
+  ) => {
+    const scale = currentTest.scale;
+
+    if (!item.reverseScore) {
+      return scale[answerIndex]?.score ?? 0;
+    }
+
+    const reversedIndex = scale.length - 1 - answerIndex;
+
+    return scale[reversedIndex]?.score ?? 0;
   };
 
   const score = useMemo(() => {
-    if (!current) return 0;
-    return questions.reduce((total, question) => {
-      const answerIndex = answers[question.key];
-      if (answerIndex === undefined) return total;
-      const scaleIndex =
-        question.reverse === 1
-          ? current.scale.length - 1 - answerIndex
-          : answerIndex;
-      return total + current.scale[scaleIndex][1];
+    return renderItems.reduce((total, item) => {
+      const answer = answers[item.key];
+
+      if (answer === undefined) return total;
+
+      return total + calculateItemScore(test, item, answer);
     }, 0);
-  }, [answers, current, questions]);
+  }, [answers, renderItems, test]);
 
-  const handleResult = () => {
-    if (!current) return;
+  const maxScore = renderItems.length * 2;
 
-    if (current.ageGroups && !ageId) {
-      window.alert("Bạn chọn nhóm tuổi của con trước nhé.");
+  const selectedBand = useMemo(() => {
+    if (!resultLevel) return null;
+
+    return (
+      test.bands.find(
+        (band) => score >= band.min && score <= band.max
+      ) ?? test.bands[test.bands.length - 1]
+    );
+  }, [resultLevel, score, test]);
+
+  const flaggedItems = useMemo<FlaggedItem[]>(() => {
+    return renderItems.flatMap((item) => {
+      const answerIndex = answers[item.key];
+
+      if (answerIndex === undefined) return [];
+
+      const itemScore = calculateItemScore(test, item, answerIndex);
+
+      if (itemScore < 1) return [];
+
+      const kind: "miss" | "has" = item.reverseScore
+        ? "has"
+        : test.pos0
+          ? "miss"
+          : "has";
+
+      return [
+        {
+          group: item.group,
+          text: item.text,
+          high: itemScore >= 2,
+          kind,
+        },
+      ];
+    });
+  }, [answers, renderItems, test]);
+
+  const handleSelectTest = (key: QuickTestKey) => {
+    setTestKey(key);
+    setAgeId("");
+    setAnswers({});
+    setResultLevel(null);
+    setError("");
+  };
+
+  const handleSelectAge = (id: string) => {
+    setAgeId(id);
+    setAnswers({});
+    setResultLevel(null);
+    setError("");
+  };
+
+  const handleAnswer = (itemKey: string, answerIndex: number) => {
+    setAnswers((current) => ({
+      ...current,
+      [itemKey]: answerIndex,
+    }));
+
+    setResultLevel(null);
+    setError("");
+  };
+
+  const handleReset = () => {
+    setAnswers({});
+    setResultLevel(null);
+    setError("");
+  };
+
+  const handleShowResult = () => {
+    if (test.ageGroups && !ageId) {
+      setError("Bạn chọn nhóm tuổi của con trước nhé.");
       return;
     }
 
-    const done = Object.keys(answers).length;
-    if (done < questions.length) {
-      window.alert(`Còn ${questions.length - done} câu chưa trả lời. Bạn trả lời hết để kết quả chính xác nhé.`);
+    if (answeredCount < renderItems.length) {
+      setError(
+        `Còn ${renderItems.length - answeredCount} câu chưa trả lời. Bạn trả lời hết để kết quả chính xác nhé.`
+      );
       return;
     }
 
     const band =
-      current.bands.find((item) => score >= item.min && score <= item.max) ??
-      current.bands[current.bands.length - 1];
+      test.bands.find(
+        (item) => score >= item.min && score <= item.max
+      ) ?? test.bands[test.bands.length - 1];
 
-    setResult({ score, band });
+    setResultLevel(band.level);
+    setError("");
+
     window.setTimeout(() => {
-      resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      resultRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     }, 30);
   };
 
-  const handleSend = () => {
-    if (!current) return;
+  const renderFlagBlock = (
+    title: string,
+    items: FlaggedItem[]
+  ) => {
+    if (!items.length) return null;
 
-    if (!name.trim() || !phone.trim()) {
-      setMessage("Bạn điền giúp tên và số Zalo nhé.");
-      return;
-    }
+    const groups = new Map<string, FlaggedItem[]>();
 
-    const text =
-      `Xin chào, tôi vừa làm bài test "${current.title}" trên web. ` +
-      `Tên tôi: ${name.trim()}. Tuổi con: ${childAge.trim()}. Điểm: ${score}. ` +
-      "Tôi muốn nhận bản phân tích chi tiết.";
+    items.forEach((item) => {
+      const key = item.group || "";
+      const current = groups.get(key) ?? [];
+      current.push(item);
+      groups.set(key, current);
+    });
 
-    window.open(`${data.zaloBaseUrl}?text=${encodeURIComponent(text)}`, "_blank");
-    setMessage("Đã mở Zalo — bạn gửi tin nhắn để chúng tôi gửi lại bản phân tích nhé.");
+    return (
+      <>
+        <div className="tn-fg">
+          {title} · {items.length} câu
+        </div>
+
+        {Array.from(groups.entries()).map(([group, groupItems]) => (
+          <div key={group || "general"}>
+            {group ? (
+              <div className="tn-flag-group">{group}</div>
+            ) : null}
+
+            <ul className="tn-flags">
+              {groupItems.map((item, index) => (
+                <li
+                  key={`${item.text}-${index}`}
+                  className={item.high ? "hi" : "mid"}
+                  dangerouslySetInnerHTML={{ __html: item.text }}
+                />
+              ))}
+            </ul>
+          </div>
+        ))}
+      </>
+    );
   };
 
-  if (!current) return null;
+  const missItems = flaggedItems.filter(
+    (item) => item.kind === "miss"
+  );
 
-  let lastGroup = "";
+  const hasItems = flaggedItems.filter(
+    (item) => item.kind === "has"
+  );
+
+  const markerPosition =
+    maxScore > 0
+      ? Math.min(score, maxScore) / maxScore * 100
+      : 0;
 
   return (
     <section id="test-nhanh">
       <div className="wrap">
-        <div className="center" style={{ marginBottom: 26 }}>
+        <div className="center tn-heading">
           <div className="eyebrow">{data.eyebrow}</div>
-          <h2>{data.heading}</h2>
+          <h2>{data.title}</h2>
           <p className="lead">{data.description}</p>
         </div>
 
         <div className="tn-wrap">
-          <div className="tn-tabs" id="tnTabs">
-            {data.tests.map((test) => (
-              <button
-                key={test.id}
-                className={`tn-tab ${test.id === testId ? "on" : ""}`}
-                type="button"
-                onClick={() => selectTest(test.id)}
-              >
-                <span className="i">{test.icon}</span>
-                <b>{test.title}</b>
-                <span>{test.sub}</span>
-              </button>
-            ))}
+          <div className="tn-tabs">
+            {(Object.keys(data.tests) as QuickTestKey[]).map((key) => {
+              const item = data.tests[key];
+
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  className={`tn-tab ${testKey === key ? "on" : ""}`}
+                  onClick={() => handleSelectTest(key)}
+                >
+                  <span
+                    className="i"
+                    dangerouslySetInnerHTML={{ __html: item.icon }}
+                  />
+                  <b>{item.title}</b>
+                  <span>{item.sub}</span>
+                </button>
+              );
+            })}
           </div>
 
           <div className="tn-body">
-            <p className="tn-intro">{renderRichText(current.intro)}</p>
+            <p
+              className="tn-intro"
+              dangerouslySetInnerHTML={{ __html: test.intro }}
+            />
 
-            {current.ageGroups ? (
+            {test.ageGroups ? (
               <div className="tn-age">
-                <span style={{ fontSize: 13.5, color: "var(--ink3)", alignSelf: "center", marginRight: 4 }}>
+                <span className="tn-age-label">
                   Con bạn mấy tuổi?
                 </span>
-                {current.ageGroups.map((group) => (
+
+                {test.ageGroups.map((group) => (
                   <button
                     key={group.id}
                     type="button"
-                    className={ageId === group.id ? "on" : undefined}
-                    onClick={() => {
-                      setAgeId(group.id);
-                      resetAnswers();
-                    }}
+                    className={ageId === group.id ? "on" : ""}
+                    onClick={() => handleSelectAge(group.id)}
                   >
                     {group.label}
                   </button>
@@ -190,35 +310,55 @@ export default function QuickTest({ data }: QuickTestProps) {
               </div>
             ) : null}
 
-            {current.ageGroups && !ageId ? (
-              <p className="muted" style={{ padding: "18px 0" }}>
+            {test.ageGroups && !ageId ? (
+              <p className="muted tn-age-empty">
                 Chọn nhóm tuổi của con để bắt đầu.
               </p>
             ) : (
               <div>
-                {questions.map((question) => {
-                  const showGroup = Boolean(question.group && question.group !== lastGroup);
-                  if (question.group) lastGroup = question.group;
+                {renderItems.map((item, index) => {
+                  const previousGroup =
+                    index > 0 ? renderItems[index - 1].group : undefined;
+
+                  const showGroup =
+                    item.group && item.group !== previousGroup;
+
                   return (
-                    <div key={question.key}>
-                      {showGroup ? <div className="tn-gh">{question.group}</div> : null}
+                    <div key={item.key}>
+                      {showGroup ? (
+                        <div className="tn-gh">{item.group}</div>
+                      ) : null}
+
                       <div className="tn-q">
-                        <p>{renderRichText(question.text)}</p>
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: item.text,
+                          }}
+                        />
+
                         <div className="tn-opts">
-                          {current.scale.map(([label], optionIndex) => (
-                            <label key={`${question.key}-${optionIndex}`}>
+                          {test.scale.map((option, answerIndex) => (
+                            <label
+                              key={`${item.key}-${answerIndex}`}
+                              className={
+                                answers[item.key] === answerIndex
+                                  ? "checked"
+                                  : ""
+                              }
+                            >
                               <input
                                 type="radio"
-                                name={`q${question.key}`}
-                                checked={answers[question.key] === optionIndex}
+                                name={item.key}
+                                value={answerIndex}
+                                checked={
+                                  answers[item.key] === answerIndex
+                                }
                                 onChange={() =>
-                                  setAnswers((prev) => ({
-                                    ...prev,
-                                    [question.key]: optionIndex,
-                                  }))
+                                  handleAnswer(item.key, answerIndex)
                                 }
                               />
-                              <span>{label}</span>
+
+                              <span>{option.label}</span>
                             </label>
                           ))}
                         </div>
@@ -230,68 +370,195 @@ export default function QuickTest({ data }: QuickTestProps) {
             )}
 
             <div className="tn-foot">
-              <button className="btn p" type="button" onClick={handleResult}>
+              <button
+                type="button"
+                className="btn p"
+                onClick={handleShowResult}
+              >
                 Xem kết quả
               </button>
-              <button className="btn s" type="button" onClick={resetAnswers}>
+
+              <button
+                type="button"
+                className="btn s"
+                onClick={handleReset}
+              >
                 Làm lại
               </button>
+
               <span className="tn-prog">
-                {questions.length ? `Đã trả lời ${Object.keys(answers).length}/${questions.length} câu` : ""}
+                {renderItems.length
+                  ? `Đã trả lời ${answeredCount}/${renderItems.length} câu`
+                  : ""}
               </span>
             </div>
 
-            <div
-              ref={resultRef}
-              className={`tn-res ${result ? `on ${result.band.level}` : ""}`}
-            >
-              {result ? (
-                <>
-                  <div className="lv">Kết quả · {result.score} điểm</div>
-                  <h4>{result.band.title}</h4>
-                  <p>{renderRichText(result.band.description)}</p>
+            {error ? (
+              <div className="tn-error">{error}</div>
+            ) : null}
 
-                  <div className="btns" style={{ marginBottom: 14 }}>
-                    <a className="btn p" href={data.resultPrimaryUrl} target="_blank" rel="noreferrer">
-                      {data.resultPrimaryLabel}
-                    </a>
-                    <a className="btn s" href={data.resultSecondaryUrl}>
-                      {data.resultSecondaryLabel}
-                    </a>
+            {selectedBand && resultLevel ? (
+              <div
+                ref={resultRef}
+                className={`tn-res on ${resultLevel}`}
+              >
+                <div className="tn-top">
+                  <div className="tn-num">
+                    <b>{score}</b>
+                    <span>trên {maxScore} điểm</span>
                   </div>
 
-                  <div className="tn-lead">
-                    <b>{data.leadTitle}</b>
-                    <p>{data.leadDescription}</p>
-                    <div className="row">
-                      <input value={name} onChange={(e) => setName(e.target.value)} placeholder={data.namePlaceholder} />
-                      <input value={childAge} onChange={(e) => setChildAge(e.target.value)} placeholder={data.agePlaceholder} />
-                      <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder={data.phonePlaceholder} />
-                      <button className="btn g" type="button" onClick={handleSend}>
-                        {data.submitLabel}
-                      </button>
+                  <div className="tn-meta">
+                    <div className="lv">
+                      Kết quả · {test.title}
                     </div>
-                    <p
-                      style={{
-                        margin: "10px 0 0",
-                        color: message.startsWith("Đã") ? "#2E7D5B" : "#B1442C",
-                      }}
-                    >
-                      {message}
-                    </p>
+                    <h4>{selectedBand.title}</h4>
                   </div>
-                </>
-              ) : null}
-            </div>
+                </div>
+
+                <div className="tn-bar">
+                  {test.bands.map((band, index) => {
+                    const width =
+                      ((band.max - band.min + 1) /
+                        (maxScore + 1)) *
+                      100;
+
+                    return (
+                      <i
+                        key={`${band.level}-${index}`}
+                        className={`z${index + 1}`}
+                        style={{ flex: `0 0 ${width}%` }}
+                      />
+                    );
+                  })}
+
+                  <i
+                    className="dot"
+                    style={{
+                      position: "absolute",
+                      top: "-3px",
+                      bottom: "-3px",
+                      left: `calc(${markerPosition}% - 1.5px)`,
+                      borderRadius: "2px",
+                    }}
+                  />
+                </div>
+
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: selectedBand.description,
+                  }}
+                />
+
+                <div className="tn-block">
+                  <b className="bh">
+                    📝 Phân tích từng câu trả lời của bạn
+                  </b>
+
+                  {!flaggedItems.length ? (
+                    <p className="tn-sub tn-no-flags">
+                      Bạn đánh dấu con đạt toàn bộ các mục trong bài
+                      này. Không có câu nào cần theo dõi thêm — bạn cứ
+                      tiếp tục như đang làm.
+                    </p>
+                  ) : (
+                    <>
+                      {renderFlagBlock(test.labMiss, missItems)}
+                      {renderFlagBlock(test.labHas, hasItems)}
+
+                      <p className="tn-sub tn-legend">
+                        <b className="tn-dot-high">●</b> rõ ràng
+                        <span />
+                        <b>○</b> lúc có lúc không
+                      </p>
+
+                      <p className="tn-sub">
+                        Đây chính là những điều đáng nói nhất nếu bạn
+                        cho con đi khám. Bạn chụp lại màn hình này là đủ
+                        — không cần nhớ hay kể lại.
+                      </p>
+                    </>
+                  )}
+                </div>
+
+                <div className="tn-block">
+                  <b className="bh">
+                    ✅ Việc bạn làm được ngay tuần này
+                  </b>
+
+                  <ol className="tn-do">
+                    {(test.actions[selectedBand.level] ?? []).map(
+                      (action, index) => (
+                        <li
+                          key={index}
+                          dangerouslySetInnerHTML={{ __html: action }}
+                        />
+                      )
+                    )}
+                  </ol>
+                </div>
+
+                <div className="tn-block tn-next">
+                  <b className="bh">Nếu bạn muốn đi tiếp</b>
+
+                  <p className="nx">
+                    Bạn không cần làm gì thêm hôm nay. Những việc phía
+                    trên là đủ để bắt đầu. Ba lối dưới đây chỉ dành cho
+                    khi bạn thấy cần.
+                  </p>
+
+                  <div className="btns">
+                    {data.nextLinks
+                      .filter(
+                        (link) =>
+                          !link.onlyFor || link.onlyFor === testKey
+                      )
+                      .map((link) => (
+                        <a
+                          key={link.label}
+                          className="btn s"
+                          href={link.href}
+                          target={link.external ? "_blank" : undefined}
+                          rel={link.external ? "noreferrer" : undefined}
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                  </div>
+                </div>
+
+                <div className="tn-save">
+                  <button
+                    type="button"
+                    className="btn s"
+                    onClick={() => window.print()}
+                  >
+                    🖨 Lưu hoặc in kết quả này
+                  </button>
+
+                  <span className="muted">
+                    Kết quả chỉ nằm trên máy bạn. Chúng tôi không lưu và
+                    không cần bạn để lại số điện thoại.
+                  </span>
+                </div>
+              </div>
+            ) : null}
 
             <p className="tn-disc">
-              {current.note ? (
+              {test.note ? (
                 <>
-                  {renderRichText(current.note)}
+                  <span
+                    dangerouslySetInnerHTML={{ __html: test.note }}
+                  />
                   <br />
                 </>
               ) : null}
-              {renderRichText(data.disclaimer)}
+
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: data.disclaimer,
+                }}
+              />
             </p>
           </div>
         </div>

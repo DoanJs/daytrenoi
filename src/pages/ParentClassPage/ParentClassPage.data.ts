@@ -117,13 +117,13 @@ export const parentClassPageMockData: ParentClassPageData = {
     "img003": "/images/100-tu-au-tien-cua-be-532c8917.jpg"
   },
   "links": {
-    "link001": "#p1",
-    "link002": "#p2",
+    "link001": "#lop-cha-me/p1",
+    "link002": "#lop-cha-me/p2",
     "link003": "https://zalo.me/0866620583",
     "link004": "https://zalo.me/0866620583",
     "link005": "#phu-huynh/kham",
-    "link006": "#p1",
-    "link007": "#p2",
+    "link006": "#lop-cha-me/p1",
+    "link007": "#lop-cha-me/p2",
     "link008": "https://zalo.me/0866620583",
     "link009": "https://zalo.me/0866620583",
     "link010": "https://zalo.me/0866620583",

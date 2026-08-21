@@ -7,6 +7,7 @@ const validPages = new Set([
   "dao-tao",
   "chuyen-giao",
   "sach",
+  "khoa-hoc",
   "lien-he",
    // Admin
   "admin",

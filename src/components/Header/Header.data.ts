@@ -36,6 +36,11 @@ export const headerMockData: HeaderData = {
       "page": "sach"
     },
     {
+      "label": "Khóa học",
+      "href": "#khoa-hoc",
+      "page": "khoa-hoc"
+    },
+    {
       "label": "Liên hệ",
       "href": "#lien-he",
       "page": "lien-he"

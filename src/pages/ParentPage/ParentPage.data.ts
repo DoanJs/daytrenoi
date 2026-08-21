@@ -123,8 +123,8 @@ export const parentPageMockData: ParentPageData = {
     "img004": "/images/100-tu-au-tien-cua-be-532c8917.jpg"
   },
   "links": {
-    "link001": "#test-nhanh",
-    "link002": "#kham",
+    "link001": "#phu-huynh/test-nhanh",
+    "link002": "https://zalo.me/0866620583",
     "link003": "#cham-noi",
     "link004": "https://zalo.me/0866620583",
     "link005": "tel:0866620583",

@@ -13,6 +13,7 @@ import { useHashRoute } from "./hooks/useHashRoute";
 import { getSiteData, mockSiteData, SiteData } from "./services/siteDataService";
 import { AdminManagementPage } from "./modules/admin-management";
 import AdminGuard from "./modules/admin-management/auth/AdminGuard";
+import CoursesPage from "./pages/CoursesPage/CoursesPage";
 
 export default function App() {
   const { page } = useHashRoute();
@@ -50,7 +51,7 @@ export default function App() {
   const renderPage = () => {
     switch (page) {
       case "phu-huynh":
-        return <ParentPage data={siteData.parent} quickTestData={siteData.quickTest} />;
+        return <ParentPage data={siteData.parent} />;
       case "lop-cha-me":
         return <ParentClassPage data={siteData.parentClass} />;
       case "dao-tao":
@@ -59,11 +60,13 @@ export default function App() {
         return <TransferPage data={siteData.transfer} />;
       case "sach":
         return <BooksPage data={siteData.books} />;
+      case "khoa-hoc":
+        return <CoursesPage data={siteData.courses} />;
       case "lien-he":
         return <ContactPage data={siteData.contact} />;
       case "index":
       default:
-        return <HomePage data={siteData.home} quickTestData={siteData.quickTest} />;
+        return <HomePage data={siteData.home} />;
     }
   };
 

@@ -1,4 +1,27 @@
+export type QuickTestKey =
+  | "tu-ky"
+  | "cham-noi"
+  | "giac-quan"
+  | "phat-am";
+
 export type QuickTestLevel = "thap" | "vua" | "cao";
+
+export interface QuickTestScaleOption {
+  label: string;
+  score: number;
+}
+
+export interface QuickTestItem {
+  text: string;
+  reverseScore?: boolean;
+  group?: string;
+}
+
+export interface QuickTestAgeGroup {
+  id: string;
+  label: string;
+  items: string[];
+}
 
 export interface QuickTestBand {
   min: number;
@@ -8,46 +31,59 @@ export interface QuickTestBand {
   description: string;
 }
 
-export interface QuickTestAgeGroup {
-  id: string;
-  label: string;
-  questions: string[];
-}
-
-export interface QuickTestGroup {
-  title: string;
-  questions: string[];
+export interface QuickTestActions {
+  thap: string[];
+  vua: string[];
+  cao: string[];
 }
 
 export interface QuickTestDefinition {
-  id: string;
+  id: QuickTestKey;
   icon: string;
   title: string;
   sub: string;
   intro: string;
-  scale: Array<[string, number]>;
-  items?: Array<[string, number]>;
+
+  /**
+   * true:
+   * - câu bình thường có điểm > 0 được hiểu là "chưa đạt"
+   *
+   * false:
+   * - câu có điểm > 0 được hiểu là "biểu hiện đang có"
+   */
+  pos0: boolean;
+
+  labMiss: string;
+  labHas: string;
+
+  scale: QuickTestScaleOption[];
+
+  items?: QuickTestItem[];
+  groups?: {
+    name: string;
+    items: QuickTestItem[];
+  }[];
   ageGroups?: QuickTestAgeGroup[];
-  groups?: QuickTestGroup[];
+
   bands: QuickTestBand[];
+  actions: QuickTestActions;
+
   note?: string;
 }
 
 export interface QuickTestData {
   eyebrow: string;
-  heading: string;
+  title: string;
   description: string;
-  tests: QuickTestDefinition[];
+
+  tests: Record<QuickTestKey, QuickTestDefinition>;
+
   disclaimer: string;
-  resultPrimaryLabel: string;
-  resultSecondaryLabel: string;
-  resultPrimaryUrl: string;
-  resultSecondaryUrl: string;
-  leadTitle: string;
-  leadDescription: string;
-  namePlaceholder: string;
-  agePlaceholder: string;
-  phonePlaceholder: string;
-  submitLabel: string;
-  zaloBaseUrl: string;
+
+  nextLinks: {
+    label: string;
+    href: string;
+    external?: boolean;
+    onlyFor?: QuickTestKey;
+  }[];
 }

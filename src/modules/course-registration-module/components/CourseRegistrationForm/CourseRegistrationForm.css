@@ -1,0 +1,340 @@
+.cr-form,
+.cr-success {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 24px 70px rgba(36, 28, 22, 0.18);
+  box-sizing: border-box;
+}
+.cr-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: #f8f2ec;
+  color: #241c16;
+  font-size: 24px;
+  cursor: pointer;
+}
+.cr-eyebrow {
+  margin-bottom: 7px;
+  color: var(--o-d);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.cr-form h2,
+.cr-success h2 {
+  margin: 0 46px 9px 0;
+}
+.cr-intro,
+.cr-success-desc {
+  margin: 0 0 20px;
+  color: var(--ink2);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.cr-course {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: #fcfaf7;
+}
+.cr-course-cover {
+  width: 90px;
+  height: 90px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--o-p);
+  display: grid;
+  place-items: center;
+  font-size: 36px;
+}
+.cr-course-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cr-course-info {
+  display: grid;
+  gap: 4px;
+}
+.cr-course-info b {
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.35;
+}
+.cr-course-info span {
+  color: var(--ink3);
+  font-size: 12.5px;
+}
+.cr-course-price {
+  text-align: right;
+}
+.cr-course-price small {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--ink3);
+  font-size: 11px;
+}
+.cr-course-price strong {
+  display: block;
+  color: var(--o-d);
+  font-size: 18px;
+}
+.cr-course-price del {
+  display: block;
+  margin-top: 2px;
+  color: var(--ink3);
+  font-size: 11.5px;
+}
+.cr-gift {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: #fff7e7;
+  color: #7b5a18;
+  font-size: 12.5px;
+}
+.cr-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+.cr-fields label {
+  display: block;
+}
+.cr-fields label > span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink2);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+.cr-fields em {
+  color: #b1442c;
+  font-style: normal;
+}
+.cr-fields input,
+.cr-fields textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  padding: 11px 12px;
+  color: var(--ink);
+  font: inherit;
+  outline: none;
+  transition: 0.15s;
+}
+.cr-fields input:focus,
+.cr-fields textarea:focus {
+  border-color: var(--o);
+  box-shadow: 0 0 0 3px rgba(226, 98, 44, 0.09);
+}
+.cr-full {
+  grid-column: 1/-1;
+}
+.cr-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 18px;
+  padding: 13px 15px;
+  border-radius: 10px;
+  background: var(--o-p);
+}
+.cr-total span {
+  color: var(--ink2);
+  font-size: 13px;
+}
+.cr-total strong {
+  color: var(--o-d);
+  font-size: 21px;
+}
+.cr-error {
+  margin-top: 13px;
+  padding: 10px 12px;
+  border-left: 3px solid #b1442c;
+  border-radius: 0 8px 8px 0;
+  background: #fbede9;
+  color: #9f321e;
+  font-size: 13px;
+}
+.cr-submit,
+.cr-btn {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+}
+.cr-submit {
+  margin-top: 16px;
+  background: var(--o);
+  color: #fff;
+}
+.cr-submit:hover:not(:disabled) {
+  background: var(--o-d);
+}
+.cr-submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.cr-policy {
+  margin: 10px 0 0;
+  text-align: center;
+  color: var(--ink3);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+.cr-success {
+  text-align: center;
+}
+.cr-success-icon {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #eaf3ee;
+  color: #2e7d5b;
+  font-size: 27px;
+  font-weight: 800;
+}
+.cr-code {
+  max-width: 360px;
+  margin: 18px auto;
+  padding: 15px;
+  border: 1px dashed var(--o);
+  border-radius: 11px;
+  background: #fff9f5;
+}
+.cr-code span {
+  display: block;
+  color: var(--ink3);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.cr-code strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--o-d);
+  font-size: 23px;
+  letter-spacing: 0.04em;
+}
+.cr-confirm-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  margin-bottom: 16px;
+  text-align: left;
+}
+.cr-confirm-summary > div {
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+}
+.cr-confirm-summary span {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--ink3);
+  font-size: 11px;
+}
+.cr-confirm-summary b {
+  display: block;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.35;
+}
+.cr-btn-copy {
+  margin-bottom: 9px;
+  background: #f4efe9;
+  color: var(--ink);
+}
+.cr-btn-zalo {
+  background: #0a7cff;
+  color: #fff;
+}
+.cr-zalo-note {
+  margin-top: 12px;
+  color: var(--ink3);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+@media (max-width: 640px) {
+  .cr-form,
+  .cr-success {
+    padding: 24px 18px;
+  }
+  .cr-course {
+    grid-template-columns: 70px 1fr;
+  }
+  .cr-course-cover {
+    width: 70px;
+    height: 70px;
+  }
+  .cr-course-price {
+    grid-column: 1/-1;
+    text-align: left;
+  }
+  .cr-fields {
+    grid-template-columns: 1fr;
+  }
+  .cr-full {
+    grid-column: auto;
+  }
+  .cr-confirm-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+.course-registration-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(36, 28, 22, 0.6);
+  backdrop-filter: blur(4px);
+
+  overflow-y: auto;
+}
+
+.course-registration-popup {
+  position: relative;
+
+  width: 100%;
+  max-width: 760px;
+
+  margin: auto;
+}
