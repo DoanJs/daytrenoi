@@ -14,9 +14,18 @@ import { getSiteData, mockSiteData, SiteData } from "./services/siteDataService"
 import { AdminManagementPage } from "./modules/admin-management";
 import AdminGuard from "./modules/admin-management/auth/AdminGuard";
 import CoursesPage from "./pages/CoursesPage/CoursesPage";
+import {
+    ChamNoiPage,
+    GiacQuanPage,
+    KheHoMoiVomPage,
+    MatTuPage,
+    NoiNgongPage,
+    TuKyPage,
+  } from "./pages/parent-topics";
+
 
 export default function App() {
-  const { page } = useHashRoute();
+  const { page, anchor } = useHashRoute();
   const [siteData, setSiteData] = useState<SiteData>(mockSiteData);
 
   useEffect(() => {
@@ -50,8 +59,25 @@ export default function App() {
 
   const renderPage = () => {
     switch (page) {
-      case "phu-huynh":
+       case "phu-huynh": {
+    switch (anchor) {
+      case "cham-noi":
+        return <ChamNoiPage />;
+      case "giac-quan":
+        return <GiacQuanPage />;
+      case "khe-ho-moi-vom":
+        return <KheHoMoiVomPage />;
+      case "mat-tu":
+        return <MatTuPage />;
+      case "noi-ngong":
+        return <NoiNgongPage />;
+      case "tu-ky":
+        return <TuKyPage />;
+      default:
         return <ParentPage data={siteData.parent} />;
+    }
+  }
+
       case "lop-cha-me":
         return <ParentClassPage data={siteData.parentClass} />;
       case "dao-tao":
