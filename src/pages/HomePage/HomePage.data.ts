@@ -147,7 +147,8 @@ export const homePageMockData: HomePageData = {
     "t143": "Gọi ngay"
   },
   "images": {
-    "img001": "/images/bo-sach-va-cong-cu-dr-owl-academy-8a477b90.jpg",
+    // "img001": "/images/bo-sach-va-cong-cu-dr-owl-academy-8a477b90.jpg",
+    "img001": "/images/chuong-trinh-phuong-phap-tai-owlspeaks.jpg",
     "img002": "/images/ts-bs-nguyen-hoang-oanh-lam-viec-voi-tre-tai-owl-5cff1076.jpg",
     "img003": "/images/ts-bs-nguyen-hoang-oanh-bb8a8095.jpg"
   },
