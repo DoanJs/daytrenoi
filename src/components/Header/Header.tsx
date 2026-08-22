@@ -35,6 +35,7 @@ export default function Header({ data, currentPage }: HeaderProps) {
               href={item.href}
               data-p={item.page}
               className={currentPage === item.page ? "on" : undefined}
+              target={ item.href === 'https://bacsihoangoanh.edubit.vn/' ? "_blank" : "_parent"}
             >
               {item.label}
             </a>

@@ -384,6 +384,13 @@ export default function HomePage({ data }: Props) {
                 <a className={"btn s"} href={data.links.link003} style={{ background: "red", color: '#fff' }}>
                   {data.texts.t011}
                 </a>
+                <a className={"btn p"} href={"https://zalo.me/0866620583"} style={{ background: "blue" }} target="_blank"
+                  rel="noreferrer">
+                  Đăng ký khám
+                </a>
+                <a className={"btn p"} href={'#phu-huynh/can-thiep'} style={{ background: "blue" }}>
+                  Can thiệp tại OWLSPEAKS
+                </a>
               </div>
               <div className={"stats"}>
                 <div className={"stat"}>

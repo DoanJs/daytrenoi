@@ -65,6 +65,9 @@ export default function CoursesPage({ data }: Props) {
           </h1>
 
           <p className="lead">{data.texts.t004}</p>
+          <a className={"btn p"} href={'#lop-cha-me'}>
+              Lớp dành cho phụ huynh
+            </a>
         </div>
       </div>
 
@@ -78,7 +81,7 @@ export default function CoursesPage({ data }: Props) {
                 <div className="course-card" key={course.id}>
                   <div className="ph">
                     <img
-                      src="/images/speech-therapy-owl-d5c2c84c.png"
+                      src="/images/hoc-de-lam-duoc-khong-chi-de-biet.jpg"
                       alt={course.title}
                     />
                     {/* {course.coverUrl ? (
@@ -150,7 +153,7 @@ export default function CoursesPage({ data }: Props) {
                             courseId: course.id,
                             courseTitle: course.title,
                             // coverUrl: course.coverUrl,
-                            coverUrl: "/images/speech-therapy-owl-d5c2c84c.png",
+                            coverUrl: "/images/hoc-de-lam-duoc-khong-chi-de-biet.jpg",
 
                             schedule: course.schedule,
                             location: course.location,
@@ -267,7 +270,7 @@ export default function CoursesPage({ data }: Props) {
             <div className="course-detail-grid">
               <div>
                 <img
-                  src="/images/speech-therapy-owl-d5c2c84c.png"
+                  src="/images/hoc-de-lam-duoc-khong-chi-de-biet.jpg"
                   alt={selectedCourse.title}
                 />
                 {/* {selectedCourse.coverUrl ? (
@@ -371,7 +374,7 @@ export default function CoursesPage({ data }: Props) {
                       courseId: selectedCourse.id,
                       courseTitle: selectedCourse.title,
                       // coverUrl: selectedCourse.coverUrl,
-                      coverUrl: "/images/speech-therapy-owl-d5c2c84c.png",
+                      coverUrl: "/images/hoc-de-lam-duoc-khong-chi-de-biet.jpg",
 
                       schedule: selectedCourse.schedule,
                       location: selectedCourse.location,

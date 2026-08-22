@@ -1,1 +1,14 @@
 /* Footer giữ nguyên class và CSS từ src/styles/global.css của HTML gốc. */
+.footer-social-links a svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.footer-social-links .facebook {
+  color: #1877f2;
+}
+
+.footer-social-links .youtube {
+  color: #ff0000;
+}

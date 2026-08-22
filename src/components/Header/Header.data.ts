@@ -21,9 +21,9 @@ export const headerMockData: HeaderData = {
       "page": "dao-tao"
     },
     {
-      "label": "Lớp PH",
-      "href": "#lop-cha-me",
-      "page": "lop-cha-me"
+      "label": "Lịch đào tạo",
+      "href": "#khoa-hoc",
+      "page": "khoa-hoc"
     },
     {
       "label": "Chuyển nhượng",
@@ -36,9 +36,9 @@ export const headerMockData: HeaderData = {
       "page": "sach"
     },
     {
-      "label": "Khóa học",
-      "href": "#khoa-hoc",
-      "page": "khoa-hoc"
+      "label": "Kiến thức khoa học",
+      "href": "https://bacsihoangoanh.edubit.vn/",
+      "page": "lop-cha-me"
     },
     {
       "label": "Liên hệ",

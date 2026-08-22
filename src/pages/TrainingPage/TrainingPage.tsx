@@ -175,7 +175,7 @@ interface Props {
 export default function TrainingPage({ data }: Props) {
   const [isLoadingCourse, setIsLoadingCourse] = useState(false);
   // const handleAdd = async () => {
-    
+
   //   const promises = coursesDemo.map((item, index) => {
   //     addCourse({
   //       ...item,
@@ -205,10 +205,10 @@ export default function TrainingPage({ data }: Props) {
         <div className={"wrap"}>
           <div className={"thap"}>
             <div className={"tpanel"}>
-              <div className={"h"} style={{ background: "var(--c-cm)" }}>
+              {/* <div className={"h"} style={{ background: "var(--c-cm)" }}>
                 {data.texts.t006}
-              </div>
-              <div className={"b"}>
+              </div> */}
+              {/* <div className={"b"}>
                 <a className={"it"} href={data.links.link001}>
                   <b>{data.texts.t007}</b>
                   <em>{data.texts.t008}</em>
@@ -227,7 +227,7 @@ export default function TrainingPage({ data }: Props) {
                   <b>{data.texts.t014}</b>
                   {data.texts.t015}
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className={"thap-mid"}>
               <div className={"trow"}>
@@ -652,6 +652,12 @@ export default function TrainingPage({ data }: Props) {
               <b style={{ color: "var(--ink)" }}>{data.texts.t184}</b>
               {data.texts.t185}
             </p>
+            <img alt='choi-lon' src='/images/choi-lon.jpg'
+              style={{
+                borderRadius: '16px',
+                marginBottom: '16px'
+              }}
+            />
             <div style={{ display: "grid", gap: "12px" }}>
               <div className={"course"} id={"choi-1"}>
                 <div className={"code"} style={{ background: "var(--c-choi)" }}>
@@ -825,6 +831,12 @@ export default function TrainingPage({ data }: Props) {
               <b style={{ color: "var(--ink)" }}>{data.texts.t247}</b>
               {data.texts.t248}
             </p>
+            <img alt='mieng-xinh-loi-hay' src='/images/mieng-xinh-loi-hay.jpg'
+              style={{
+                borderRadius: '16px',
+                marginBottom: '16px'
+              }}
+            />
             <div style={{ display: "grid", gap: "12px" }}>
               <div className={"course"} id={"mxlh-1"}>
                 <div className={"code"} style={{ background: "var(--c-mxlh)" }}>
