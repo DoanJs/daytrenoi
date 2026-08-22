@@ -547,7 +547,7 @@ export const quickTestData: QuickTestData = {
   "nextLinks": [
     {
       "label": "Đọc kỹ hơn về chậm nói",
-      "href": "#phu-huynh/dau-hieu",
+      "href": "#phu-huynh/cham-noi",
       "onlyFor": "cham-noi"
     },
     {

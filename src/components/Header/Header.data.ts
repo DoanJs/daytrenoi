@@ -11,22 +11,22 @@ export const headerMockData: HeaderData = {
       "page": "index"
     },
     {
-      "label": "Cho phụ huynh",
+      "label": "Dành cho PH",
       "href": "#phu-huynh",
       "page": "phu-huynh"
     },
     {
-      "label": "Lớp cha mẹ",
-      "href": "#lop-cha-me",
-      "page": "lop-cha-me"
-    },
-    {
-      "label": "Dành cho giáo viên",
+      "label": "Dành cho GV",
       "href": "#dao-tao",
       "page": "dao-tao"
     },
     {
-      "label": "Chuyển giao & giám sát",
+      "label": "Lớp PH",
+      "href": "#lop-cha-me",
+      "page": "lop-cha-me"
+    },
+    {
+      "label": "Chuyển nhượng",
       "href": "#chuyen-giao",
       "page": "chuyen-giao"
     },

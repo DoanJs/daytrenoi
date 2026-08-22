@@ -313,7 +313,11 @@ function HomeQuickTest() {
                   <b className="bh">Nếu bạn muốn đi tiếp</b>
                   <p className="nx">Bạn không cần làm gì thêm hôm nay. Những việc phía trên là đủ để bắt đầu. Ba lối dưới đây chỉ dành cho khi bạn thấy cần.</p>
                   <div className="btns">
-                    {testKey === "cham-noi" ? <a className="btn s" href="#phu-huynh">Đọc kỹ hơn về chậm nói</a> : null}
+                    {testKey === "cham-noi" ? <a className="btn s" href="#phu-huynh/cham-noi"
+                      onClick={() => {
+                        window.scrollTo(0, 0);
+                      }}
+                    >Đọc kỹ hơn về chậm nói</a> : null}
                     <a className="btn s" href="#phu-huynh/kham">Xem quy trình khám diễn ra thế nào</a>
                     <a className="btn s" href="#lop-cha-me">Xem lớp cho cha mẹ</a>
                     <a className="btn s" href="https://zalo.me/0866620583" target="_blank" rel="noreferrer">Hỏi một câu qua Zalo</a>
@@ -374,10 +378,10 @@ export default function HomePage({ data }: Props) {
                 <a className={"btn p"} href={data.links.link001}>
                   {data.texts.t009}
                 </a>
-                <a className={"btn p"} href={data.links.link002} style={{ background: "var(--ink)" }}>
+                <a className={"btn p"} href={data.links.link002} style={{ background: "blue" }}>
                   {data.texts.t010}
                 </a>
-                <a className={"btn s"} href={data.links.link003}>
+                <a className={"btn s"} href={data.links.link003} style={{ background: "red", color: '#fff' }}>
                   {data.texts.t011}
                 </a>
               </div>

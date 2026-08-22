@@ -520,6 +520,9 @@ export default function QuickTest({
                           href={link.href}
                           target={link.external ? "_blank" : undefined}
                           rel={link.external ? "noreferrer" : undefined}
+                          onClick={link.href === '#phu-huynh/cham-noi' ? () => {
+                            window.scrollTo(0, 0);
+                          } : undefined}
                         >
                           {link.label}
                         </a>

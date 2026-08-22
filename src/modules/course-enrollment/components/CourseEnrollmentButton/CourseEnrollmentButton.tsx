@@ -33,7 +33,7 @@ interface Props {
 
 export default function CourseEnrollmentButton({
   courseId,
-  label = "Hỏi lịch & học phí →",
+  label = "Đăng ký →",
   className = "meta-cta",
   onLoadingChange,
 }: Props) {
@@ -98,9 +98,13 @@ export default function CourseEnrollmentButton({
     <>
       <button
         type="button"
-        className={className}
+        className={`btn ${className}`}
         onClick={handleOpen}
         disabled={isLoading}
+        style={{
+          background: 'var(--o)',
+          color: '#fff'
+        }}
       >
         {isLoading
           ? "Đang tải..."
