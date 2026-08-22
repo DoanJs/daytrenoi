@@ -111,7 +111,7 @@ export default function CoursesPage({ data }: Props) {
                       ) : null}
 
                       {typeof course.giftsRemaining === "number" &&
-                      course.giftsRemaining > 0 ? (
+                        course.giftsRemaining > 0 ? (
                         <span>
                           <b>Quà tặng:</b> còn {course.giftsRemaining}
                         </span>
@@ -120,7 +120,7 @@ export default function CoursesPage({ data }: Props) {
 
                     <div className="course-price">
                       {typeof course.earlyBirdFee === "number" &&
-                      course.earlyBirdFee > 0
+                        course.earlyBirdFee > 0
                         ? formatMoney(course.earlyBirdFee)
                         : formatMoney(course.tuitionFee)}
                     </div>
@@ -316,7 +316,7 @@ export default function CoursesPage({ data }: Props) {
                   </div>
 
                   {typeof selectedCourse.earlyBirdFee === "number" &&
-                  selectedCourse.earlyBirdFee > 0 ? (
+                    selectedCourse.earlyBirdFee > 0 ? (
                     <div>
                       <b>Ưu đãi sớm:</b>{" "}
                       {formatMoney(selectedCourse.earlyBirdFee)}
@@ -350,19 +350,44 @@ export default function CoursesPage({ data }: Props) {
 
                 <div className="course-detail-price">
                   {typeof selectedCourse.earlyBirdFee === "number" &&
-                  selectedCourse.earlyBirdFee > 0
+                    selectedCourse.earlyBirdFee > 0
                     ? formatMoney(selectedCourse.earlyBirdFee)
                     : formatMoney(selectedCourse.tuitionFee)}
                 </div>
 
-                <a
+                {/* <a
                   className="btn p"
                   href={"https://zalo.me/0866620583"}
                   target="_blank"
                   rel="noreferrer"
                 >
                   Đăng ký khóa học
-                </a>
+                </a> */}
+                <button
+                  type="button"
+                  className="btn p"
+                  onClick={() =>
+                    setSelectedCourseForRegister({
+                      courseId: selectedCourse.id,
+                      courseTitle: selectedCourse.title,
+                      // coverUrl: selectedCourse.coverUrl,
+                      coverUrl: "/images/speech-therapy-owl-d5c2c84c.png",
+
+                      schedule: selectedCourse.schedule,
+                      location: selectedCourse.location,
+
+                      tuitionFee: selectedCourse.tuitionFee,
+                      earlyBirdFee: selectedCourse.earlyBirdFee,
+                      earlyBirdDeadline: selectedCourse.earlyBirdDeadline,
+
+                      giftsRemaining: selectedCourse.giftsRemaining,
+
+                      giftDescription: selectedCourse.giftDescription,
+                    })
+                  }
+                >
+                  Đăng ký khóa học
+                </button>
               </div>
             </div>
           </div>

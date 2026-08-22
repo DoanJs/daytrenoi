@@ -154,7 +154,7 @@ export const homePageMockData: HomePageData = {
   "links": {
     "link001": "#phu-huynh",
     "link002": "#dao-tao",
-    "link003": "#test-nhanh",
+    "link003": "#index/test-nhanh",
     "link004": "#phu-huynh",
     "link005": "#dao-tao",
     "link006": "#lop-cha-me/p1",

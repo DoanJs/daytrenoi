@@ -99,6 +99,9 @@ export default function ParentPage({ data }: Props) {
             <a
               href={data.links.link003}
               style={{ color: "var(--o-d)", fontWeight: "600" }}
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
             >
               {data.texts.t020}
             </a>
@@ -374,7 +377,7 @@ export default function ParentPage({ data }: Props) {
           </div>
           <div className={"center"} style={{ marginTop: "26px" }}>
             <a className={"btn s"} href={data.links.link013}>
-               Xem cả {books.length} cuốn →
+              Xem cả {books.length} cuốn →
             </a>
           </div>
         </div>

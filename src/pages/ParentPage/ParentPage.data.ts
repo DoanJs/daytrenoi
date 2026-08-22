@@ -125,7 +125,7 @@ export const parentPageMockData: ParentPageData = {
   "links": {
     "link001": "#phu-huynh/test-nhanh",
     "link002": "https://zalo.me/0866620583",
-    "link003": "#cham-noi",
+    "link003": "#phu-huynh/cham-noi",
     "link004": "https://zalo.me/0866620583",
     "link005": "tel:0866620583",
     "link006": "https://zalo.me/0866620583",
