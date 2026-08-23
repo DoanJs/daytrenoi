@@ -80,12 +80,8 @@ export default function CoursesPage({ data }: Props) {
               {courses.map((course) => (
                 <div className="course-card" key={course.id}>
                   <div className="ph">
-                    {/* <img
-                      src="/images/hoc-de-lam-duoc-khong-chi-de-biet.jpg"
-                      alt={course.title}
-                    /> */}
                     {course.coverUrl ? (
-                      <img src={course.coverUrl} alt={course.title} />
+                      <img src={course.coverUrl || "/images/speech-therapy-owl-d5c2c84c.png"} alt={course.title} />
                     ) : (
                       <div style={{ fontSize: "48px" }}>🎓</div>
                     )}
@@ -152,8 +148,8 @@ export default function CoursesPage({ data }: Props) {
                           setSelectedCourseForRegister({
                             courseId: course.id,
                             courseTitle: course.title,
-                            // coverUrl: course.coverUrl,
-                            coverUrl: "/images/hoc-de-lam-duoc-khong-chi-de-biet.jpg",
+                            coverUrl: course.coverUrl,
+                            // coverUrl: "/images/hoc-de-lam-duoc-khong-chi-de-biet.jpg",
 
                             schedule: course.schedule,
                             location: course.location,
@@ -269,11 +265,11 @@ export default function CoursesPage({ data }: Props) {
 
             <div className="course-detail-grid">
               <div>
-                <img
+                {/* <img
                   src="/images/hoc-de-lam-duoc-khong-chi-de-biet.jpg"
                   alt={selectedCourse.title}
-                />
-                {/* {selectedCourse.coverUrl ? (
+                /> */}
+                {selectedCourse.coverUrl ? (
                   <img
                     src={selectedCourse.coverUrl}
                     alt={selectedCourse.title}
@@ -291,7 +287,7 @@ export default function CoursesPage({ data }: Props) {
                   >
                     🎓
                   </div>
-                )} */}
+                )}
               </div>
 
               <div>
@@ -373,8 +369,8 @@ export default function CoursesPage({ data }: Props) {
                     setSelectedCourseForRegister({
                       courseId: selectedCourse.id,
                       courseTitle: selectedCourse.title,
-                      // coverUrl: selectedCourse.coverUrl,
-                      coverUrl: "/images/hoc-de-lam-duoc-khong-chi-de-biet.jpg",
+                      coverUrl: selectedCourse.coverUrl,
+                      // coverUrl: "/images/hoc-de-lam-duoc-khong-chi-de-biet.jpg",
 
                       schedule: selectedCourse.schedule,
                       location: selectedCourse.location,
