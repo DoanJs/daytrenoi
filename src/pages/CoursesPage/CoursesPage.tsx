@@ -4,7 +4,10 @@ import { CoursesPageData } from "./CoursesPage.types";
 
 import { CourseModel } from "../../models/site";
 import { getCourses } from "../../services/courseService";
-import { SelectedCourse, CourseRegistrationForm } from "../../modules/course-registration-module";
+import {
+  SelectedCourse,
+  CourseRegistrationForm,
+} from "../../modules/course-registration-module";
 
 interface Props {
   data: CoursesPageData;
@@ -65,9 +68,6 @@ export default function CoursesPage({ data }: Props) {
           </h1>
 
           <p className="lead">{data.texts.t004}</p>
-          <a className={"btn p"} href={'#lop-cha-me'}>
-              Lớp dành cho phụ huynh
-            </a>
         </div>
       </div>
 
@@ -81,7 +81,13 @@ export default function CoursesPage({ data }: Props) {
                 <div className="course-card" key={course.id}>
                   <div className="ph">
                     {course.coverUrl ? (
-                      <img src={course.coverUrl || "/images/speech-therapy-owl-d5c2c84c.png"} alt={course.title} />
+                      <img
+                        src={
+                          course.coverUrl ||
+                          "/images/speech-therapy-owl-d5c2c84c.png"
+                        }
+                        alt={course.title}
+                      />
                     ) : (
                       <div style={{ fontSize: "48px" }}>🎓</div>
                     )}
@@ -110,7 +116,7 @@ export default function CoursesPage({ data }: Props) {
                       ) : null}
 
                       {typeof course.giftsRemaining === "number" &&
-                        course.giftsRemaining > 0 ? (
+                      course.giftsRemaining > 0 ? (
                         <span>
                           <b>Quà tặng:</b> còn {course.giftsRemaining}
                         </span>
@@ -119,7 +125,7 @@ export default function CoursesPage({ data }: Props) {
 
                     <div className="course-price">
                       {typeof course.earlyBirdFee === "number" &&
-                        course.earlyBirdFee > 0
+                      course.earlyBirdFee > 0
                         ? formatMoney(course.earlyBirdFee)
                         : formatMoney(course.tuitionFee)}
                     </div>
@@ -176,6 +182,9 @@ export default function CoursesPage({ data }: Props) {
           <p className="muted" style={{ marginTop: "20px" }}>
             {data.texts.t005} {data.texts.t006}
           </p>
+          <a className={"btn p"} href={"#lop-cha-me"}>
+            Lớp dành cho phụ huynh
+          </a>
         </div>
       </section>
 
@@ -315,7 +324,7 @@ export default function CoursesPage({ data }: Props) {
                   </div>
 
                   {typeof selectedCourse.earlyBirdFee === "number" &&
-                    selectedCourse.earlyBirdFee > 0 ? (
+                  selectedCourse.earlyBirdFee > 0 ? (
                     <div>
                       <b>Ưu đãi sớm:</b>{" "}
                       {formatMoney(selectedCourse.earlyBirdFee)}
@@ -349,7 +358,7 @@ export default function CoursesPage({ data }: Props) {
 
                 <div className="course-detail-price">
                   {typeof selectedCourse.earlyBirdFee === "number" &&
-                    selectedCourse.earlyBirdFee > 0
+                  selectedCourse.earlyBirdFee > 0
                     ? formatMoney(selectedCourse.earlyBirdFee)
                     : formatMoney(selectedCourse.tuitionFee)}
                 </div>

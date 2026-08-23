@@ -77,6 +77,13 @@ export default function ParentClassPage({ data }: Props) {
                 <div className={"sub2"}>{data.texts.t011}</div>
               </div>
               <div className={"pbd2"}>
+                <img
+                  alt="lop-1-ngay"
+                  src="/images/lop-1-ngay.jpg"
+                  style={{
+                    borderRadius: "16px",
+                  }}
+                />
                 <div className={"pricebig"}>
                   {data.texts.t012}
                   <small>{data.texts.t013}</small>
@@ -116,6 +123,13 @@ export default function ParentClassPage({ data }: Props) {
                 <div className={"sub2"}>{data.texts.t029}</div>
               </div>
               <div className={"pbd2"}>
+                <img
+                  alt="lop-8-tuan"
+                  src="/images/lop-8-tuan.jpg"
+                  style={{
+                    borderRadius: "16px",
+                  }}
+                />
                 <div className={"priceask"}>
                   {data.texts.t030}
                   <small
