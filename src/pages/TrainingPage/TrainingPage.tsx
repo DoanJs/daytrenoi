@@ -231,7 +231,11 @@ export default function TrainingPage({ data }: Props) {
             </div>
             <div className={"thap-mid"}>
               <div className={"trow"}>
-                <a className={"tb p5"} href={data.links.link003}>
+                <a className={"tb p5"} href={data.links.link003} 
+                  style={{
+                    background: "#086AFB",
+                    borderColor: "#086AFB",
+                  }}>
                   <span className={"n"}>{data.texts.t016}</span>
                   <b>{data.texts.t017}</b>
                   <span className={"d"}>{data.texts.t018}</span>
@@ -250,7 +254,11 @@ export default function TrainingPage({ data }: Props) {
                 <b>{data.texts.t026}</b>
               </div>
               <div className={"trow"}>
-                <a className={"tb p4a"} href={data.links.link004}>
+                <a className={"tb p4a"} href={data.links.link004} 
+                  style={{
+                    background: "#F36189",
+                    borderColor: "#F36189",
+                  }}>
                   <span className={"n"}>{data.texts.t027}</span>
                   <b>{data.texts.t028}</b>
                   <span className={"d"}>{data.texts.t029}</span>
@@ -260,7 +268,10 @@ export default function TrainingPage({ data }: Props) {
                     <span>{data.texts.t032}</span>
                   </span>
                 </a>
-                <a className={"tb p4b"} href={data.links.link005}>
+                <a className={"tb p4b"} href={data.links.link005}  style={{
+                    background: "#2B9879",
+                    borderColor: "#2B9879",
+                  }}>
                   <span className={"n"}>{data.texts.t033}</span>
                   <b>{data.texts.t034}</b>
                   <span className={"d"}>{data.texts.t035}</span>

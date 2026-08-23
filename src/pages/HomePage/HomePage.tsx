@@ -636,7 +636,14 @@ export default function HomePage({ data }: Props) {
             </div>
             <div className={"thap-mid"}>
               <div className={"trow"}>
-                <a className={"tb p5"} href={data.links.link008}>
+                <a
+                  className={"tb p5"}
+                  href={data.links.link008}
+                  style={{
+                    background: "#086AFB",
+                    borderColor: "#086AFB",
+                  }}
+                >
                   <span className={"n"}>{data.texts.t053}</span>
                   <b>{data.texts.t054}</b>
                   <span className={"d"}>{data.texts.t055}</span>
@@ -655,7 +662,14 @@ export default function HomePage({ data }: Props) {
                 <b>{data.texts.t063}</b>
               </div>
               <div className={"trow"}>
-                <a className={"tb p4a"} href={data.links.link009}>
+                <a
+                  className={"tb p4a"}
+                  href={data.links.link009}
+                  style={{
+                    background: "#F36189",
+                    borderColor: "#F36189",
+                  }}
+                >
                   <span className={"n"}>{data.texts.t064}</span>
                   <b>{data.texts.t065}</b>
                   <span className={"d"}>{data.texts.t066}</span>
@@ -665,7 +679,14 @@ export default function HomePage({ data }: Props) {
                     <span>{data.texts.t069}</span>
                   </span>
                 </a>
-                <a className={"tb p4b"} href={data.links.link010}>
+                <a
+                  className={"tb p4b"}
+                  href={data.links.link010}
+                  style={{
+                    background: "#2B9879",
+                    borderColor: "#2B9879",
+                  }}
+                >
                   <span className={"n"}>{data.texts.t070}</span>
                   <b>{data.texts.t071}</b>
                   <span className={"d"}>{data.texts.t072}</span>

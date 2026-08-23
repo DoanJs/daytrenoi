@@ -371,7 +371,7 @@ export default function BooksPage({ data }: Props) {
           </div> */}
 
           <div className="books">
-            {books.map((book) => (
+            {/* {books.map((book) => (
               <div className="book" key={book.id}>
                 <div className="ph">
                   <img src={book.coverUrl} alt={book.alt} />
@@ -407,6 +407,61 @@ export default function BooksPage({ data }: Props) {
                     }
                   >
                     Đặt sách
+                  </button>
+                </div>
+              </div>
+            ))} */}
+
+            {books.map((book) => (
+              <div
+                className={`book ${book.soldOut ? "is-sold-out" : ""}`}
+                key={book.id}
+              >
+                <div className="ph">
+                  <img src={book.coverUrl} alt={book.alt} />
+                </div>
+
+                <div className="bd">
+                  <span className="tagline">{book.category}</span>
+
+                  <h3>{book.name}</h3>
+
+                  <p>{book.description}</p>
+
+                  {/* Dấu mộc SOLD OUT */}
+                  {book.soldOut && (
+                    <div className="sold-out-stamp" aria-label="Đã bán hết">
+                      <div className="sold-out-stamp__top">SOLD OUT</div>
+
+                      <div className="sold-out-stamp__center">SOLD OUT</div>
+
+                      <div className="sold-out-stamp__bottom">★ ★ ★</div>
+                    </div>
+                  )}
+
+                  <div className="price">
+                    {new Intl.NumberFormat("vi-VN", {
+                      style: "currency",
+                      currency: "VND",
+                    }).format(book.price)}
+                  </div>
+
+                  <button
+                    type="button"
+                    className={`btn p ${book.soldOut ? "sold-out-btn" : ""}`}
+                    disabled={book.soldOut}
+                    onClick={() => {
+                      if (book.soldOut) return;
+
+                      setSelectedBook({
+                        bookId: book.id,
+                        bookName: book.name,
+                        price: book.price,
+                        coverUrl: book.coverUrl,
+                      });
+                    }}
+                  >
+                    {book.soldOut ? "Đã bán hết" : "Đặt sách"}
                   </button>
                 </div>
               </div>

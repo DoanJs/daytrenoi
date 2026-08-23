@@ -46,3 +46,128 @@
   box-shadow: 0 4px 16px
     rgba(36, 28, 22, 0.15);
 }
+
+/* ================== */
+.book {
+  position: relative;
+}
+
+.book .bd {
+  position: relative;
+}
+
+/* =========================
+   SOLD OUT STAMP
+========================= */
+
+.sold-out-stamp {
+  position: absolute;
+
+  right: 18px;
+  bottom: 85px;
+
+  width: 135px;
+  height: 135px;
+
+  border: 4px solid #c82020;
+  border-radius: 50%;
+
+  color: #c82020;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  transform: rotate(-12deg);
+
+  font-weight: 900;
+  text-transform: uppercase;
+
+  opacity: 0.9;
+
+  pointer-events: none;
+  user-select: none;
+
+  z-index: 5;
+
+  box-sizing: border-box;
+}
+
+/* Vòng tròn bên trong */
+.sold-out-stamp::before {
+  content: "";
+  position: absolute;
+
+  inset: 7px;
+
+  border: 2px solid #c82020;
+  border-radius: 50%;
+}
+
+/* SOLD OUT phía trên */
+.sold-out-stamp__top {
+  font-size: 13px;
+  letter-spacing: 2px;
+
+  position: relative;
+  z-index: 2;
+
+  margin-bottom: 5px;
+}
+
+/* Thanh SOLD OUT chính */
+.sold-out-stamp__center {
+  position: relative;
+  z-index: 3;
+
+  width: 150px;
+
+  padding: 5px 3px;
+
+  background: #fff;
+
+  border: 4px solid #c82020;
+
+  font-size: 22px;
+  line-height: 1;
+
+  text-align: center;
+  letter-spacing: 1px;
+
+  transform: rotate(-3deg);
+
+  box-shadow:
+    0 0 0 2px #fff;
+}
+
+.sold-out-stamp__bottom {
+  position: relative;
+  z-index: 2;
+
+  font-size: 12px;
+  letter-spacing: 4px;
+
+  margin-top: 7px;
+}
+
+
+/* =========================
+   BUTTON SOLD OUT
+========================= */
+
+.book .sold-out-btn {
+  background: #d8d8d8;
+  color: #888;
+
+  cursor: not-allowed;
+
+  border-color: #d8d8d8;
+
+  opacity: 1;
+}
+
+.book .sold-out-btn:hover {
+  background: #d8d8d8;
+  color: #888;
+}

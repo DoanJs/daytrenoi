@@ -73,6 +73,8 @@ export interface BookModel {
 
   createAt: Timestamp;
   updateAt: Timestamp;
+
+  soldOut: boolean
 }
 
 export interface CourseModel {
