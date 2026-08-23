@@ -503,7 +503,7 @@ export default function HomePage({ data }: Props) {
                 <a
                   className={"btn p"}
                   href={"https://zalo.me/0866620583"}
-                  style={{ background: "blue" }}
+                  style={{ background: "green" }}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -512,7 +512,7 @@ export default function HomePage({ data }: Props) {
                 <a
                   className={"btn p"}
                   href={"#phu-huynh/can-thiep"}
-                  style={{ background: "blue" }}
+                  style={{ background: "green" }}
                 >
                   Can thiệp tại OWLSPEAKS
                 </a>
