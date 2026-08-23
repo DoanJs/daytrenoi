@@ -518,7 +518,7 @@ export default function HomePage({ data }: Props) {
                 </a>
               </div>
               <div className={"stats"}>
-                <div className={"stat"}>
+                {/* <div className={"stat"}>
                   <b>{data.texts.t012}</b>
                   <span>{data.texts.t013}</span>
                 </div>
@@ -533,7 +533,7 @@ export default function HomePage({ data }: Props) {
                 <div className={"stat"}>
                   <b>{data.texts.t018}</b>
                   <span>{data.texts.t019}</span>
-                </div>
+                </div> */}
               </div>
             </div>
             <div>
