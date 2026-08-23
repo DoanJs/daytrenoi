@@ -226,6 +226,16 @@ export default function BookAdminModal({ book, open, onClose, onSave }: Props) {
 
             <span>Hiển thị sách trên website</span>
           </label>
+
+          <label className="admin-check full">
+            <input
+              type="checkbox"
+              checked={Boolean(form.soldOut)}
+              onChange={(e) => setValue("soldOut", e.target.checked)}
+            />
+
+            <span>Sold Out</span>
+          </label>
         </div>
 
         <div className="admin-modal-actions">
