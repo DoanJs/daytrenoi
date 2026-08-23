@@ -113,4 +113,6 @@ export interface CourseModel {
   createAt: Timestamp;
 
   updateAt: Timestamp;
+
+  coverUrl: string
 }

@@ -1,38 +1,23 @@
-import {
-  useMemo,
-  useState,
-} from "react";
+import { useMemo, useState } from "react";
 
-import type {
-  AddCourseInput,
-  CourseModel,
-} from "../../types/admin.types";
+import type { AddCourseInput, CourseModel } from "../../types/admin.types";
 
-import {
-  formatMoney,
-} from "../../utils/adminFormat";
+import { formatMoney } from "../../utils/adminFormat";
 
-import CourseAdminModal
-  from "../../components/CourseAdminModal/CourseAdminModal";
+import CourseAdminModal from "../../components/CourseAdminModal/CourseAdminModal";
 
-import AdminConfirmModal
-  from "../../components/AdminConfirmModal/AdminConfirmModal";
+import LoadingOverlay from "../../../../components/LoadingOverlay/LoadingOverlay";
+import AdminConfirmModal from "../../components/AdminConfirmModal/AdminConfirmModal";
+import { uploadImage } from "../../utils/uploadImg";
 
 interface Props {
   courses: CourseModel[];
 
-  onAdd: (
-    data: AddCourseInput,
-  ) => Promise<void>;
+  onAdd: (data: AddCourseInput) => Promise<void>;
 
-  onUpdate: (
-    id: string,
-    data: AddCourseInput,
-  ) => Promise<void>;
+  onUpdate: (id: string, data: AddCourseInput) => Promise<void>;
 
-  onDelete: (
-    id: string,
-  ) => Promise<void>;
+  onDelete: (id: string) => Promise<void>;
 }
 
 export default function AdminCourses({
@@ -41,108 +26,67 @@ export default function AdminCourses({
   onUpdate,
   onDelete,
 }: Props) {
-  const [
-    search,
-    setSearch,
-  ] = useState("");
+  const [search, setSearch] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [
-    editing,
-    setEditing,
-  ] =
-    useState<CourseModel | null>(
-      null,
-    );
+  const [editing, setEditing] = useState<CourseModel | null>(null);
 
-  const [
-    formOpen,
-    setFormOpen,
-  ] = useState(false);
+  const [formOpen, setFormOpen] = useState(false);
 
-  const [
-    deleteTarget,
-    setDeleteTarget,
-  ] =
-    useState<CourseModel | null>(
-      null,
-    );
+  const [deleteTarget, setDeleteTarget] = useState<CourseModel | null>(null);
 
   const filtered = useMemo(() => {
-    const keyword =
-      search
-        .trim()
-        .toLowerCase();
+    const keyword = search.trim().toLowerCase();
 
-    return courses.filter(
-      (course) =>
-        [
-          course.courseId,
-          course.title,
-          course.location,
-        ]
-          .join(" ")
-          .toLowerCase()
-          .includes(
-            keyword,
-          ),
+    return courses.filter((course) =>
+      [course.courseId, course.title, course.location]
+        .join(" ")
+        .toLowerCase()
+        .includes(keyword),
     );
-  }, [
-    courses,
-    search,
-  ]);
+  }, [courses, search]);
 
-  const handleSave =
-    async (
-      data: AddCourseInput,
-    ) => {
-      if (editing) {
-        await onUpdate(
-          editing.id,
-          data,
-        );
-      } else {
-        await onAdd(
-          data,
-        );
-      }
+  const handleSave = async (data: AddCourseInput, courseImgFile: any) => {
+    let coverUrl = data.coverUrl;
 
-      setFormOpen(
-        false,
-      );
+    setIsLoading(true);
+    if (courseImgFile) {
+      const resultImg = await uploadImage(courseImgFile, "courses");
 
-      setEditing(
-        null,
-      );
-    };
+      coverUrl = resultImg.url;
+    }
+
+    if (editing) {
+      await onUpdate(editing.id, { ...data, coverUrl });
+    } else {
+      await onAdd({ ...data, coverUrl });
+    }
+
+    setIsLoading(false);
+
+    setFormOpen(false);
+
+    setEditing(null);
+  };
 
   return (
     <>
       <div className="admin-page-header">
         <div>
-          <div className="eyebrow">
-            Courses
-          </div>
+          <div className="eyebrow">Courses</div>
 
-          <h1>
-            Lịch & học phí khóa học
-          </h1>
+          <h1>Lịch & học phí khóa học</h1>
 
-          <p>
-            Quản lý lịch mở lớp, học phí, ưu đãi, quà tặng và link đăng ký.
-          </p>
+          <p>Quản lý lịch mở lớp, học phí, ưu đãi, quà tặng và link đăng ký.</p>
         </div>
 
         <button
           type="button"
           className="admin-btn primary"
           onClick={() => {
-            setEditing(
-              null,
-            );
+            setEditing(null);
 
-            setFormOpen(
-              true,
-            );
+            setFormOpen(true);
           }}
         >
           + Thêm khóa học
@@ -153,176 +97,111 @@ export default function AdminCourses({
         <input
           className="admin-search"
           value={search}
-          onChange={(e) =>
-            setSearch(
-              e.target.value,
-            )
-          }
+          onChange={(e) => setSearch(e.target.value)}
           placeholder="Tìm courseId, tên khóa, địa điểm..."
         />
 
         <select className="admin-filter">
-          <option>
-            {courses.length} khóa học
-          </option>
+          <option>{courses.length} khóa học</option>
         </select>
       </div>
 
       <div className="admin-course-list">
-        {filtered.map(
-          (course) => (
-            <div
-              className="admin-course-row"
-              key={
-                course.id
-              }
-            >
-              <div className="admin-course-code">
-                {
-                  course.courseId
+        {filtered.map((course) => (
+          <div className="admin-course-row" key={course.id}>
+            <div className="admin-course-code">
+              {course.courseId}
+              <img
+                alt="image-course"
+                src={
+                  course.coverUrl || "/images/speech-therapy-owl-d5c2c84c.png"
                 }
-              </div>
-
-              <div className="admin-course-main">
-                <b>
-                  {
-                    course.title
-                  }
-                </b>
-
-                <span>
-                  {
-                    course.schedule
-                  }
-                  {" · "}
-                  {
-                    course.location
-                  }
-                </span>
-
-                <span>
-                  🎁 Còn{" "}
-                  {
-                    course.giftsRemaining ??
-                    0
-                  }{" "}
-                  quà
-                </span>
-              </div>
-
-              <div className="admin-course-price">
-                <b>
-                  {formatMoney(
-                    course.tuitionFee,
-                  )}
-                </b>
-
-                {course.earlyBirdFee ? (
-                  <small>
-                    Ưu đãi{" "}
-                    {formatMoney(
-                      course.earlyBirdFee,
-                    )}
-                  </small>
-                ) : null}
-              </div>
-
-              <div>
-                <span
-                  className={`admin-badge ${
-                    course.isActive
-                      ? "active"
-                      : ""
-                  }`}
-                >
-                  {course.isActive
-                    ? "Đang mở"
-                    : "Đã ẩn"}
-                </span>
-
-                <br />
-
-                <button
-                  type="button"
-                  className="admin-action-link"
-                  onClick={() => {
-                    setEditing(
-                      course,
-                    );
-
-                    setFormOpen(
-                      true,
-                    );
-                  }}
-                >
-                  Sửa
-                </button>
-
-                {" · "}
-
-                <button
-                  type="button"
-                  className="admin-action-link danger"
-                  onClick={() =>
-                    setDeleteTarget(
-                      course,
-                    )
-                  }
-                >
-                  Xóa
-                </button>
-              </div>
+              />
             </div>
-          ),
-        )}
+
+            <div className="admin-course-main">
+              <b>{course.title}</b>
+
+              <span>
+                {course.schedule}
+                {" · "}
+                {course.location}
+              </span>
+
+              <span>🎁 Còn {course.giftsRemaining ?? 0} quà</span>
+            </div>
+
+            <div className="admin-course-price">
+              <b>{formatMoney(course.tuitionFee)}</b>
+
+              {course.earlyBirdFee ? (
+                <small>Ưu đãi {formatMoney(course.earlyBirdFee)}</small>
+              ) : null}
+            </div>
+
+            <div>
+              <span
+                className={`admin-badge ${course.isActive ? "active" : ""}`}
+              >
+                {course.isActive ? "Đang mở" : "Đã ẩn"}
+              </span>
+
+              <br />
+
+              <button
+                type="button"
+                className="admin-action-link"
+                onClick={() => {
+                  setEditing(course);
+
+                  setFormOpen(true);
+                }}
+              >
+                Sửa
+              </button>
+
+              {" · "}
+
+              <button
+                type="button"
+                className="admin-action-link danger"
+                onClick={() => setDeleteTarget(course)}
+              >
+                Xóa
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
 
       <CourseAdminModal
         open={formOpen}
         course={editing}
         onClose={() => {
-          setFormOpen(
-            false,
-          );
+          setFormOpen(false);
 
-          setEditing(
-            null,
-          );
+          setEditing(null);
         }}
-        onSave={
-          handleSave
-        }
+        onSave={handleSave}
       />
 
       <AdminConfirmModal
-        open={
-          Boolean(
-            deleteTarget,
-          )
-        }
+        open={Boolean(deleteTarget)}
         title="Xóa khóa học?"
         description={`Bạn có chắc muốn xóa "${deleteTarget?.title || ""}"?`}
-        onClose={() =>
-          setDeleteTarget(
-            null,
-          )
-        }
+        onClose={() => setDeleteTarget(null)}
         onConfirm={async () => {
-          if (
-            !deleteTarget
-          ) {
+          if (!deleteTarget) {
             return;
           }
 
-          await onDelete(
-            deleteTarget.id,
-          );
+          await onDelete(deleteTarget.id);
 
-          setDeleteTarget(
-            null,
-          );
+          setDeleteTarget(null);
         }}
       />
+
+      <LoadingOverlay show={isLoading} />
     </>
   );
 }

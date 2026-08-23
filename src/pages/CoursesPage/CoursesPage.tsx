@@ -80,15 +80,15 @@ export default function CoursesPage({ data }: Props) {
               {courses.map((course) => (
                 <div className="course-card" key={course.id}>
                   <div className="ph">
-                    <img
+                    {/* <img
                       src="/images/hoc-de-lam-duoc-khong-chi-de-biet.jpg"
                       alt={course.title}
-                    />
-                    {/* {course.coverUrl ? (
+                    /> */}
+                    {course.coverUrl ? (
                       <img src={course.coverUrl} alt={course.title} />
                     ) : (
                       <div style={{ fontSize: "48px" }}>🎓</div>
-                    )} */}
+                    )}
                   </div>
 
                   <div className="bd">

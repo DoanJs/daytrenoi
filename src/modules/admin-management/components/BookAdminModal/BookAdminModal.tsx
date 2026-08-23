@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import type { AddBookInput, BookModel } from "../../types/admin.types";
 
 import "./BookAdminModal.css";
-import { uploadBookImg } from "../../utils/uploadImg";
 import LoadingOverlay from "../../../../components/LoadingOverlay/LoadingOverlay";
+import { uploadImage } from "../../utils/uploadImg";
 
 interface Props {
   book: BookModel | null;
@@ -65,9 +65,9 @@ export default function BookAdminModal({ book, open, onClose, onSave }: Props) {
 
     setIsLoading(true);
     if (bookImgFile) {
-      const resultImg = await uploadBookImg(bookImgFile);
+      const resultImg = await uploadImage(bookImgFile, 'book');
 
-      coverUrl = resultImg.bookImg;
+      coverUrl = resultImg.url;
     }
 
     await onSave({

@@ -17,7 +17,7 @@ const fileToBase64 = (file: File): Promise<string> => {
   });
 };
 
-export const uploadBookImg = async (file: File) => {
+export const uploadImage = async (file: File, type: string) => {
   if (!file) {
     throw new Error("Vui lòng chọn ảnh");
   }
@@ -34,14 +34,15 @@ export const uploadBookImg = async (file: File) => {
 
   const imageBase64 = await fileToBase64(file);
 
-  const uploadAvatarFn = httpsCallable(functions, "uploadBookImg");
+  const uploadImageFn = httpsCallable(functions, "uploadImage");
 
-  const res: any = await uploadAvatarFn({
+  const res: any = await uploadImageFn({
     imageBase64,
+    type
   });
 
   return res.data as {
     success: boolean;
-    bookImg: string;
+    url: string;
   };
 };

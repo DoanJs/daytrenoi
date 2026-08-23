@@ -525,7 +525,7 @@ export default function HomePage({ data }: Props) {
           </div>
           <div className={"thap"}>
             <div className={"tpanel"}>
-              <div className={"h"} style={{ background: "var(--c-cm)" }}>
+              {/* <div className={"h"} style={{ background: "var(--c-cm)" }}>
                 {data.texts.t043}
               </div>
               <div className={"b"}>
@@ -557,7 +557,7 @@ export default function HomePage({ data }: Props) {
                   </b>
                   {data.texts.t052}
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className={"thap-mid"}>
               <div className={"trow"}>
