@@ -26,7 +26,7 @@ export const headerMockData: HeaderData = {
       "page": "khoa-hoc"
     },
     {
-      "label": "Chuyển nhượng",
+      "label": "Chuyển giao",
       "href": "#chuyen-giao",
       "page": "chuyen-giao"
     },
