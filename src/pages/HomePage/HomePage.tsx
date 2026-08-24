@@ -502,7 +502,7 @@ export default function HomePage({ data }: Props) {
                 </a>
                 <a
                   className={"btn p"}
-                  href={"https://zalo.me/0866620583"}
+                  href={"https://zalo.me/0857389318"}
                   style={{ background: "green" }}
                   target="_blank"
                   rel="noreferrer"

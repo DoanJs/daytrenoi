@@ -53,7 +53,7 @@ export default function ParentPage({ data }: Props) {
           <h1 style={{ maxWidth: "19ch" }}>
             {data.texts.t002}
             <br />
-            {data.texts.t003}
+            {/* {data.texts.t003} */}
           </h1>
           <p className={"lead"}>{data.texts.t004}</p>
           <div className={"btns"} style={{ marginTop: "22px" }}>
@@ -393,7 +393,7 @@ export default function ParentPage({ data }: Props) {
 
           <div className="books">
             {featuredBooks.map((book) => (
-              <div className="book" key={book.id}>
+              <div className={`book ${book.soldOut ? "is-sold-out" : ""}`} key={book.id}>
                 <div className="ph">
                   <img src={book.coverUrl} alt={book.alt || book.name} />
                 </div>
@@ -405,6 +405,17 @@ export default function ParentPage({ data }: Props) {
 
                   <p>{book.description}</p>
 
+                  {/* Dấu mộc SOLD OUT */}
+                  {book.soldOut && (
+                    <div className="sold-out-stamp" aria-label="Đã bán hết">
+                      <div className="sold-out-stamp__top">SOLD OUT</div>
+
+                      <div className="sold-out-stamp__center">SOLD OUT</div>
+
+                      <div className="sold-out-stamp__bottom">★ ★ ★</div>
+                    </div>
+                  )}
+
                   <div className="price">
                     {new Intl.NumberFormat("vi-VN", {
                       style: "currency",
@@ -412,23 +423,26 @@ export default function ParentPage({ data }: Props) {
                     }).format(book.price)}
                   </div>
 
-                  <button
+                  <a
                     type="button"
-                    className="btn p"
-                    onClick={() =>
-                      setSelectedBook({
-                        bookId: book.id,
+                    className={`btn p ${book.soldOut ? "sold-out-btn" : ""}`}
+                    href={book.soldOut ? undefined : 'https://docs.google.com/forms/d/e/1FAIpQLScCQJEBuiUfjCbUBWEHFuhP5i_kFfQThpzQ3psLKDrBK55iEQ/viewform'}
+                    target="_blank"
+                    rel="noreferrer"
+                    // disabled={book.soldOut}
+                    // onClick={() => {
+                    //   if (book.soldOut) return;
 
-                        bookName: book.name,
-
-                        price: book.price,
-
-                        coverUrl: book.coverUrl,
-                      })
-                    }
+                    //   setSelectedBook({
+                    //     bookId: book.id,
+                    //     bookName: book.name,
+                    //     price: book.price,
+                    //     coverUrl: book.coverUrl,
+                    //   });
+                    // }}
                   >
-                    Đặt sách
-                  </button>
+                    {book.soldOut ? "Đã bán hết" : "Đặt sách"}
+                  </a>
                 </div>
               </div>
             ))}

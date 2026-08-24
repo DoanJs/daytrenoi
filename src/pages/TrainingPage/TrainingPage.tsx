@@ -195,9 +195,12 @@ export default function TrainingPage({ data }: Props) {
           <div className={"eyebrow"}>{data.texts.t001}</div>
           <h1 style={{ maxWidth: "20ch" }}>{data.texts.t002}</h1>
           <p className={"lead"}>
-            {data.texts.t003}
+            {/* {data.texts.t003}
             <b>{data.texts.t004}</b>
-            {data.texts.t005}
+            {data.texts.t005} */}
+            Lộ trình đào tạo bắt đầu từ dưới lên, bạn hãy bấm vào từng bậc để
+            xem nội dung. Tháp này được xây dựng để bạn phát triển chuyên môn
+            Ngôn ngữ trị liệu bài bản và chuyên nghiệp.
           </p>
         </div>
       </div>
@@ -231,11 +234,14 @@ export default function TrainingPage({ data }: Props) {
             </div>
             <div className={"thap-mid"}>
               <div className={"trow"}>
-                <a className={"tb p5"} href={data.links.link003} 
+                <a
+                  className={"tb p5"}
+                  href={data.links.link003}
                   style={{
                     background: "#086AFB",
                     borderColor: "#086AFB",
-                  }}>
+                  }}
+                >
                   <span className={"n"}>{data.texts.t016}</span>
                   <b>{data.texts.t017}</b>
                   <span className={"d"}>{data.texts.t018}</span>
@@ -254,11 +260,14 @@ export default function TrainingPage({ data }: Props) {
                 <b>{data.texts.t026}</b>
               </div>
               <div className={"trow"}>
-                <a className={"tb p4a"} href={data.links.link004} 
+                <a
+                  className={"tb p4a"}
+                  href={data.links.link004}
                   style={{
                     background: "#F36189",
                     borderColor: "#F36189",
-                  }}>
+                  }}
+                >
                   <span className={"n"}>{data.texts.t027}</span>
                   <b>{data.texts.t028}</b>
                   <span className={"d"}>{data.texts.t029}</span>
@@ -268,10 +277,14 @@ export default function TrainingPage({ data }: Props) {
                     <span>{data.texts.t032}</span>
                   </span>
                 </a>
-                <a className={"tb p4b"} href={data.links.link005}  style={{
+                <a
+                  className={"tb p4b"}
+                  href={data.links.link005}
+                  style={{
                     background: "#2B9879",
                     borderColor: "#2B9879",
-                  }}>
+                  }}
+                >
                   <span className={"n"}>{data.texts.t033}</span>
                   <b>{data.texts.t034}</b>
                   <span className={"d"}>{data.texts.t035}</span>
@@ -520,20 +533,24 @@ export default function TrainingPage({ data }: Props) {
                       <b>{data.texts.t135}</b>
                       {data.texts.t136}
                     </span>
-                    {/* <a
-                      className={"meta-cta"}
+                    <a
+                      className={"meta-cta btn"}
                       href={data.links.link018}
                       target="_blank"
                       rel="noreferrer"
+                      style={{
+                        background: "#e2622c",
+                        color: "#fff",
+                      }}
                     >
                       {data.texts.t137}
-                    </a> */}
-                    <CourseEnrollmentButton
+                    </a>
+                    {/* <CourseEnrollmentButton
                       onLoadingChange={setIsLoadingCourse}
                       courseId="ancs-1"
                       className="meta-cta"
                       label={data.texts.t137}
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
@@ -577,15 +594,19 @@ export default function TrainingPage({ data }: Props) {
                       href={data.links.link019}
                       target="_blank"
                       rel="noreferrer"
+                      style={{
+                        background: "#e2622c",
+                        color: "#fff",
+                      }}
                     >
                       {data.texts.t158}
                     </a> */}
-                    <CourseEnrollmentButton
+                    {/* <CourseEnrollmentButton
                       onLoadingChange={setIsLoadingCourse}
                       courseId="ancs-3"
                       className="meta-cta"
                       label={data.texts.t179}
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
@@ -631,15 +652,19 @@ export default function TrainingPage({ data }: Props) {
                       href={data.links.link020}
                       target="_blank"
                       rel="noreferrer"
+                      style={{
+                        background: "#e2622c",
+                        color: "#fff",
+                      }}
                     >
                       {data.texts.t179}
                     </a> */}
-                    <CourseEnrollmentButton
+                    {/* <CourseEnrollmentButton
                       onLoadingChange={setIsLoadingCourse}
                       courseId="ancs-3"
                       className="meta-cta"
                       label={data.texts.t179}
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
@@ -663,10 +688,12 @@ export default function TrainingPage({ data }: Props) {
               <b style={{ color: "var(--ink)" }}>{data.texts.t184}</b>
               {data.texts.t185}
             </p>
-            <img alt='choi-lon' src='/images/choi-lon.jpg'
+            <img
+              alt="choi-lon"
+              src="/images/choi-lon.jpg"
               style={{
-                borderRadius: '16px',
-                marginBottom: '16px'
+                borderRadius: "16px",
+                marginBottom: "16px",
               }}
             />
             <div style={{ display: "grid", gap: "12px" }}>
@@ -707,15 +734,19 @@ export default function TrainingPage({ data }: Props) {
                       href={data.links.link021}
                       target="_blank"
                       rel="noreferrer"
+                      style={{
+                        background: "#e2622c",
+                        color: "#fff",
+                      }}
                     >
                       {data.texts.t203}
                     </a> */}
-                    <CourseEnrollmentButton
+                    {/* <CourseEnrollmentButton
                       onLoadingChange={setIsLoadingCourse}
                       courseId="choi-1"
                       className="meta-cta"
                       label={data.texts.t203}
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
@@ -757,16 +788,20 @@ export default function TrainingPage({ data }: Props) {
                       href={data.links.link022}
                       target="_blank"
                       rel="noreferrer"
+                      style={{
+                        background: "#e2622c",
+                        color: "#fff",
+                      }}
                     >
                       {data.texts.t222}
                     </a> */}
 
-                    <CourseEnrollmentButton
+                    {/* <CourseEnrollmentButton
                       onLoadingChange={setIsLoadingCourse}
                       courseId="choi-2"
                       className="meta-cta"
                       label={data.texts.t222}
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
@@ -809,16 +844,20 @@ export default function TrainingPage({ data }: Props) {
                       href={data.links.link023}
                       target="_blank"
                       rel="noreferrer"
+                      style={{
+                        background: "#e2622c",
+                        color: "#fff",
+                      }}
                     >
                       {data.texts.t242}
                     </a> */}
 
-                    <CourseEnrollmentButton
+                    {/* <CourseEnrollmentButton
                       onLoadingChange={setIsLoadingCourse}
                       courseId="choi-3"
                       className="meta-cta"
                       label={data.texts.t242}
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
@@ -842,10 +881,12 @@ export default function TrainingPage({ data }: Props) {
               <b style={{ color: "var(--ink)" }}>{data.texts.t247}</b>
               {data.texts.t248}
             </p>
-            <img alt='mieng-xinh-loi-hay' src='/images/mieng-xinh-loi-hay.jpg'
+            <img
+              alt="mieng-xinh-loi-hay"
+              src="/images/mieng-xinh-loi-hay.jpg"
               style={{
-                borderRadius: '16px',
-                marginBottom: '16px'
+                borderRadius: "16px",
+                marginBottom: "16px",
               }}
             />
             <div style={{ display: "grid", gap: "12px" }}>
@@ -888,15 +929,19 @@ export default function TrainingPage({ data }: Props) {
                       href={data.links.link024}
                       target="_blank"
                       rel="noreferrer"
+                      style={{
+                        background: "#e2622c",
+                        color: "#fff",
+                      }}
                     >
                       {data.texts.t268}
                     </a> */}
-                    <CourseEnrollmentButton
+                    {/* <CourseEnrollmentButton
                       onLoadingChange={setIsLoadingCourse}
                       courseId="mxlh-1"
                       className="meta-cta"
                       label={data.texts.t268}
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
@@ -938,16 +983,20 @@ export default function TrainingPage({ data }: Props) {
                       href={data.links.link025}
                       target="_blank"
                       rel="noreferrer"
+                      style={{
+                        background: "#e2622c",
+                        color: "#fff",
+                      }}
                     >
                       {data.texts.t287}
                     </a> */}
 
-                    <CourseEnrollmentButton
+                    {/* <CourseEnrollmentButton
                       onLoadingChange={setIsLoadingCourse}
                       courseId="mxlh-2"
                       className="meta-cta"
                       label={data.texts.t287}
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
@@ -988,15 +1037,19 @@ export default function TrainingPage({ data }: Props) {
                       href={data.links.link026}
                       target="_blank"
                       rel="noreferrer"
+                      style={{
+                        background: "#e2622c",
+                        color: "#fff",
+                      }}
                     >
                       {data.texts.t305}
                     </a> */}
-                    <CourseEnrollmentButton
+                    {/* <CourseEnrollmentButton
                       onLoadingChange={setIsLoadingCourse}
                       courseId="mxlh-3"
                       className="meta-cta"
                       label={data.texts.t305}
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
@@ -1044,15 +1097,19 @@ export default function TrainingPage({ data }: Props) {
                       href={data.links.link027}
                       target="_blank"
                       rel="noreferrer"
+                      style={{
+                        background: "#e2622c",
+                        color: "#fff",
+                      }}
                     >
                       {data.texts.t328}
                     </a> */}
-                    <CourseEnrollmentButton
+                    {/* <CourseEnrollmentButton
                       onLoadingChange={setIsLoadingCourse}
                       courseId="mxlh-4"
                       className="meta-cta"
                       label={data.texts.t328}
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>

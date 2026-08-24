@@ -446,23 +446,26 @@ export default function BooksPage({ data }: Props) {
                     }).format(book.price)}
                   </div>
 
-                  <button
+                  <a
                     type="button"
                     className={`btn p ${book.soldOut ? "sold-out-btn" : ""}`}
-                    disabled={book.soldOut}
-                    onClick={() => {
-                      if (book.soldOut) return;
+                    href={book.soldOut ? undefined : 'https://docs.google.com/forms/d/e/1FAIpQLScCQJEBuiUfjCbUBWEHFuhP5i_kFfQThpzQ3psLKDrBK55iEQ/viewform'}
+                    target="_blank"
+                    rel="noreferrer"
+                    // disabled={book.soldOut}
+                    // onClick={() => {
+                    //   if (book.soldOut) return;
 
-                      setSelectedBook({
-                        bookId: book.id,
-                        bookName: book.name,
-                        price: book.price,
-                        coverUrl: book.coverUrl,
-                      });
-                    }}
+                    //   setSelectedBook({
+                    //     bookId: book.id,
+                    //     bookName: book.name,
+                    //     price: book.price,
+                    //     coverUrl: book.coverUrl,
+                    //   });
+                    // }}
                   >
                     {book.soldOut ? "Đã bán hết" : "Đặt sách"}
-                  </button>
+                  </a>
                 </div>
               </div>
             ))}
@@ -526,6 +529,7 @@ export default function BooksPage({ data }: Props) {
           </div>
         </div>
       </section>
+
       <section className={"tight"}>
         <div className={"wrap"}>
           <h2>{data.texts.t049}</h2>
@@ -583,22 +587,28 @@ export default function BooksPage({ data }: Props) {
           </div>
         </div>
       </section>
+
       <section>
         <div className={"wrap"}>
           <div className={"band"}>
-            <h2>{data.texts.t076}</h2>
-            <p>{data.texts.t077}</p>
+            {/* <h2>{data.texts.t076}</h2> */}
+            <p>{data.texts.t076}</p>
             <div className={"btns"}>
               <a
-                className={"btn g"}
+                className={"btn s"}
                 href={data.links.link010}
                 target="_blank"
                 rel="noreferrer"
               >
-                {data.texts.t078}
-              </a>
-              <a className={"btn s"} href={data.links.link011}>
                 {data.texts.t079}
+              </a>
+              <a
+                className={"btn g"}
+                href={data.links.link011}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {data.texts.t078}
               </a>
             </div>
           </div>

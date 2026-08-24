@@ -1,1 +1,64 @@
 /* Header giữ nguyên class và CSS từ src/styles/global.css của HTML gốc. */
+.nav-links a.training-link {
+  position: relative;
+
+  color: var(--o-d);
+
+  background: var(--o-p);
+
+  border: 1.5px solid var(--o);
+
+  border-radius: 9px;
+
+  padding: 7px 14px;
+
+  font-weight: 700;
+
+  transition: 0.15s ease;
+}
+
+.nav-links a.training-link:hover {
+  background: var(--o);
+
+  color: #fff;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 14px
+    rgba(226, 98, 44, 0.22);
+}
+
+.nav-links a.training-link.on {
+  background: var(--o);
+
+  color: #fff;
+
+  border-color: var(--o);
+}
+
+.training-badge {
+  position: absolute;
+
+  top: -9px;
+  right: -8px;
+
+  padding: 2px 6px;
+
+  border-radius: 99px;
+
+  background: #b8431a;
+
+  color: #fff;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  line-height: 1.4;
+
+  letter-spacing: 0.06em;
+
+  box-shadow:
+    0 2px 6px
+    rgba(184, 67, 26, 0.25);
+}

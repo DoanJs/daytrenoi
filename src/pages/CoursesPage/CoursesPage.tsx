@@ -62,12 +62,19 @@ export default function CoursesPage({ data }: Props) {
           <div className="eyebrow">{data.texts.t001}</div>
 
           <h1 style={{ maxWidth: "18ch" }}>
-            {data.texts.t002}
+            {/* {data.texts.t002}
             <br />
-            {data.texts.t003}
+            {data.texts.t003} */}
+            Ứng dụng Ngôn ngữ trị liệu chuẩn vào công việc dạy trẻ
           </h1>
 
-          <p className="lead">{data.texts.t004}</p>
+          <p className="lead">
+            {/* {data.texts.t004} */}
+            Các khóa đào tạo đều được TS.BS Hoàng Oanh thiết kế cân đối giữa nền
+            tảng học thuật và kĩ năng lâm sàn. Mỗi khóa học có giáo trình, bộ
+            biểu mẫu, chỉ dẫn thực hành, sách riêng bài bản và thuận tiện sử
+            dụng
+          </p>
         </div>
       </div>
 
@@ -100,7 +107,15 @@ export default function CoursesPage({ data }: Props) {
 
                     <h3>{course.title}</h3>
 
-                    {course.note ? <p>{course.note}</p> : null}
+                    {course.note ? (
+                      <p
+                        style={{
+                          whiteSpace: "pre-line",
+                        }}
+                      >
+                        {course.note}
+                      </p>
+                    ) : null}
 
                     <div className="course-meta">
                       {course.schedule ? (
@@ -131,47 +146,56 @@ export default function CoursesPage({ data }: Props) {
                     </div>
 
                     <div className="course-actions">
-                      <button
+                      {/* <button
                         type="button"
                         className="btn s"
                         onClick={() => handleOpenCourse(course)}
                       >
                         Xem lịch & học phí
-                      </button>
+                      </button> */}
 
-                      {/* <a
-                        className="btn p"
-                        href={"https://zalo.me/0866620583"}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Đăng ký khóa học
-                      </a> */}
-                      <button
-                        type="button"
-                        className="btn p"
-                        onClick={() =>
-                          setSelectedCourseForRegister({
-                            courseId: course.id,
-                            courseTitle: course.title,
-                            coverUrl: course.coverUrl,
-                            // coverUrl: "/images/hoc-de-lam-duoc-khong-chi-de-biet.jpg",
+                      {course.earlyBirdFee === 0 || course.tuitionFee === 0 ? (
+                        <button
+                          type="button"
+                          className="btn p"
+                          style={{
+                            background: "#fff",
+                            color: "#e2622c",
+                            borderColor: "#e2622c",
+                          }}
+                        >
+                          Đang cập nhật ...
+                        </button>
+                      ) : (
+                        <a
+                          href={course.registerUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          type="button"
+                          className="btn p"
+                          // onClick={() =>
+                          //   setSelectedCourseForRegister({
+                          //     courseId: course.id,
+                          //     courseTitle: course.title,
+                          //     coverUrl: course.coverUrl,
+                          //     // coverUrl: "/images/hoc-de-lam-duoc-khong-chi-de-biet.jpg",
 
-                            schedule: course.schedule,
-                            location: course.location,
+                          //     schedule: course.schedule,
+                          //     location: course.location,
 
-                            tuitionFee: course.tuitionFee,
-                            earlyBirdFee: course.earlyBirdFee,
-                            earlyBirdDeadline: course.earlyBirdDeadline,
+                          //     tuitionFee: course.tuitionFee,
+                          //     earlyBirdFee: course.earlyBirdFee,
+                          //     earlyBirdDeadline: course.earlyBirdDeadline,
 
-                            giftsRemaining: course.giftsRemaining,
+                          //     giftsRemaining: course.giftsRemaining,
 
-                            giftDescription: course.giftDescription,
-                          })
-                        }
-                      >
-                        Đăng ký khóa học
-                      </button>
+                          //     giftDescription: course.giftDescription,
+                          //   })
+                          // }
+                        >
+                          Đăng ký khóa học
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>

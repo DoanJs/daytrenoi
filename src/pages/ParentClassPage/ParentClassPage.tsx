@@ -139,6 +139,7 @@ export default function ParentClassPage({ data }: Props) {
                       fontWeight: "400",
                       fontSize: "13px",
                       marginTop: "4px",
+                      color: "#fff",
                     }}
                   >
                     {data.texts.t031}
@@ -148,7 +149,11 @@ export default function ParentClassPage({ data }: Props) {
                   <b>{data.texts.t032}</b>
                   {data.texts.t033}
                 </div>
-                <ul>
+                <ul
+                  style={{
+                    color: "#fff",
+                  }}
+                >
                   <li>
                     <b>{data.texts.t034}</b>
                     {data.texts.t035}
@@ -316,7 +321,10 @@ export default function ParentClassPage({ data }: Props) {
           </div> */}
           <div className="books">
             {featuredBooks.map((book) => (
-              <div className="book" key={book.id}>
+              <div
+                className={`book ${book.soldOut ? "is-sold-out" : ""}`}
+                key={book.id}
+              >
                 <div className="ph">
                   <img src={book.coverUrl} alt={book.alt || book.name} />
                 </div>
@@ -328,6 +336,17 @@ export default function ParentClassPage({ data }: Props) {
 
                   <p>{book.description}</p>
 
+                  {/* Dấu mộc SOLD OUT */}
+                  {book.soldOut && (
+                    <div className="sold-out-stamp" aria-label="Đã bán hết">
+                      <div className="sold-out-stamp__top">SOLD OUT</div>
+
+                      <div className="sold-out-stamp__center">SOLD OUT</div>
+
+                      <div className="sold-out-stamp__bottom">★ ★ ★</div>
+                    </div>
+                  )}
+
                   <div className="price">
                     {new Intl.NumberFormat("vi-VN", {
                       style: "currency",
@@ -335,23 +354,30 @@ export default function ParentClassPage({ data }: Props) {
                     }).format(book.price)}
                   </div>
 
-                  <button
+                  <a
                     type="button"
-                    className="btn p"
-                    onClick={() =>
-                      setSelectedBook({
-                        bookId: book.id,
-
-                        bookName: book.name,
-
-                        price: book.price,
-
-                        coverUrl: book.coverUrl,
-                      })
+                    className={`btn p ${book.soldOut ? "sold-out-btn" : ""}`}
+                    href={
+                      book.soldOut
+                        ? undefined
+                        : "https://docs.google.com/forms/d/e/1FAIpQLScCQJEBuiUfjCbUBWEHFuhP5i_kFfQThpzQ3psLKDrBK55iEQ/viewform"
                     }
+                    target="_blank"
+                    rel="noreferrer"
+                    // disabled={book.soldOut}
+                    // onClick={() => {
+                    //   if (book.soldOut) return;
+
+                    //   setSelectedBook({
+                    //     bookId: book.id,
+                    //     bookName: book.name,
+                    //     price: book.price,
+                    //     coverUrl: book.coverUrl,
+                    //   });
+                    // }}
                   >
-                    Đặt sách
-                  </button>
+                    {book.soldOut ? "Đã bán hết" : "Đặt sách"}
+                  </a>
                 </div>
               </div>
             ))}

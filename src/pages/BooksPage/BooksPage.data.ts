@@ -84,10 +84,10 @@ export const booksPageMockData: BooksPageData = {
     "t073": "Tôi muốn tặng quà cho cha mẹ mới",
     "t074": "“Bản đồ” 5 năm đầu đời của con",
     "t075": " — có phần “note” để ba mẹ lưu lại dấu mốc của con.",
-    "t076": "Đặt sách hoặc hỏi thêm",
+    "t076": "Để đặt sách, bạn hãy nhấn nút ĐẶT SÁCH. Nếu bạn phân vân chọn lựa, hãy nhấn nút tư vấn thêm",
     "t077": "Nhắn tên sách và số lượng qua Zalo. Nếu bạn phân vân giữa hai cuốn, kể cho chúng tôi nghe về con bạn — chúng tôi sẽ nói cuốn nào hợp hơn.",
-    "t078": "Đặt sách qua Zalo",
-    "t079": "Gọi 0866620583"
+    "t078": "Đặt sách",
+    "t079": "Tư vấn thêm qua Zalo"
   },
   "images": {
     "img001": "/images/day-con-24-7-0c3aad87.jpg",
@@ -112,7 +112,8 @@ export const booksPageMockData: BooksPageData = {
     "link008": "#dao-tao/mxlh",
     "link009": "#chuyen-giao",
     "link010": "https://zalo.me/0866620583",
-    "link011": "tel:0866620583"
+    // "link011": "tel:0866620583"
+    "link011": "https://docs.google.com/forms/d/e/1FAIpQLScCQJEBuiUfjCbUBWEHFuhP5i_kFfQThpzQ3psLKDrBK55iEQ/viewform"
   },
   "alts": {
     "alt001": "Dạy con 24/7",

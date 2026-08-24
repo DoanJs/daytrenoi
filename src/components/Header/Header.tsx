@@ -11,15 +11,20 @@ export default function Header({ data, currentPage }: HeaderProps) {
     <nav className="top">
       <div className="nav-in">
         <a className="brand" href="#index">
-          <div className="owl" style={{
-            width: 'auto',
-            height: '38px'
-          }}>
-            <img src="/images/speaks-owl-orange.png" alt="owl-orange"
+          <div
+            className="owl"
             style={{
-              height: '100%',
-              width: 'auto'
+              width: "auto",
+              height: "38px",
             }}
+          >
+            <img
+              src="/images/speaks-owl-orange.png"
+              alt="owl-orange"
+              style={{
+                height: "100%",
+                width: "auto",
+              }}
             />
           </div>
           <div>
@@ -28,7 +33,7 @@ export default function Header({ data, currentPage }: HeaderProps) {
           </div>
         </a>
 
-        <div className="nav-links m" id="nv">
+        {/* <div className="nav-links m" id="nv">
           {data.navItems.map((item) => (
             <a
               key={item.page}
@@ -41,6 +46,42 @@ export default function Header({ data, currentPage }: HeaderProps) {
             </a>
           ))}
           <a className="nav-cta" href={data.zaloUrl} target="_blank" rel="noreferrer">
+            {data.zaloLabel}
+          </a>
+        </div> */}
+
+        <div className="nav-links m" id="nv">
+          {data.navItems.map((item) => (
+            <a
+              key={item.page}
+              href={item.href}
+              data-p={item.page}
+              className={[
+                currentPage === item.page ? "on" : "",
+                item.page === "khoa-hoc" ? "training-link" : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+              target={
+                item.href === "https://bacsihoangoanh.edubit.vn/"
+                  ? "_blank"
+                  : "_parent"
+              }
+            >
+              {item.label}
+
+              {item.page === "khoa-hoc" && (
+                <span className="training-badge">MỚI</span>
+              )}
+            </a>
+          ))}
+
+          <a
+            className="nav-cta"
+            href={data.zaloUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
             {data.zaloLabel}
           </a>
         </div>
