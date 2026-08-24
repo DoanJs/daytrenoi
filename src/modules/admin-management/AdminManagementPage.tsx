@@ -151,9 +151,9 @@ export default function AdminManagementPage() {
         <aside className="admin-sidebar">
           <div>
             <div className="admin-brand">
-              <div className="mark">
+              <a className="mark" href="/#index">
                   <img src="/images/speech-therapy-owl-d5c2c84c.png" alt=""/>
-              </div>
+              </a>
 
               <b>OWLSPEAKS</b>
 

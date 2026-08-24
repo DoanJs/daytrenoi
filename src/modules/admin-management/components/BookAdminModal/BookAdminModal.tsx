@@ -26,6 +26,7 @@ const createEmpty = (): AddBookInput =>
     alt: "",
     zaloUrl: "",
     isActive: true,
+    soldOut: false,
     sortOrder: 1,
   }) as AddBookInput;
 

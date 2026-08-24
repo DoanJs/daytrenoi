@@ -47,11 +47,12 @@ export default function CourseAdminModal({
       const { id, createAt, updateAt, ...editable } = course;
 
       setForm(editable as AddCourseInput);
+      setCourseImgPreview(editable.coverUrl)
     } else {
       setForm(createEmpty());
     }
   }, [course, open]);
-
+  
   if (!open) return null;
 
   const setValue = (key: keyof AddCourseInput, value: unknown) => {

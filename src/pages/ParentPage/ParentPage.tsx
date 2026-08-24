@@ -67,12 +67,12 @@ export default function ParentPage({ data }: Props) {
               rel="noreferrer"
               style={{
                 background: "green",
-                color: '#fff'
+                color: "#fff",
               }}
             >
               {data.texts.t006}
             </a>
-            <a className={"btn p"} href={'#lop-cha-me'}>
+            <a className={"btn p"} href={"#lop-cha-me"}>
               Lớp dành cho phụ huynh
             </a>
           </div>
@@ -190,23 +190,36 @@ export default function ParentPage({ data }: Props) {
         <div className={"wrap"}>
           <div className={"eyebrow"}>{data.texts.t037}</div>
           <h2>{data.texts.t038}</h2>
-          <img src='/images/chuong-trinh-phuong-phap-tai-owlspeaks.jpg'
-            alt='can-thiep-cho-con-tai-owlspeaks'
+          <img
+            src="/images/chuong-trinh-phuong-phap-tai-owlspeaks.jpg"
+            alt="can-thiep-cho-con-tai-owlspeaks"
             style={{
-              borderRadius: '16px',
-              marginBottom: '16px'
+              borderRadius: "16px",
+              marginBottom: "16px",
             }}
           />
-          <div className={"card"} style={{
-            textAlign: 'justify',
-            whiteSpace: "pre-line"
-          }}>
+          <div
+            className={"card"}
+            style={{
+              textAlign: "justify",
+              whiteSpace: "pre-line",
+            }}
+          >
             <b>
-              OWL SPEAKS – “Tổ Cú” là trung tâm ngôn ngữ trị liệu chuyên sâu đầu tiên tại miền Bắc, thành lập năm 2016 bởi TS.BS. Nguyễn Hoàng Oanh.
-
-              Với nền tảng y khoa kết hợp chuyên môn sâu về âm ngữ trị liệu, bác sĩ Hoàng Oanh theo đuổi hướng tiếp cận liên ngành: một trẻ chậm nói không chỉ cần được dạy nói mà cần được nhìn nhận đồng thời ở khía cạnh y học, giác quan, vận động, nhận thức và môi trường gia đình. Đây chính là nguồn gốc của mô hình one-stop đang được áp dụng tại Trung tâm.
-              Bác sĩ trực tiếp tham gia xây dựng chương trình chuyên môn, đào tạo đội ngũ chuyên viên và đồng hành cùng phụ huynh trong suốt quá trình con tham gia tổ Cú, với quan điểm nhất quán: gia đình là một phần của quá trình trị liệu, không phải người đứng ngoài quan sát.
-            </b></div>
+              OWL SPEAKS – “Tổ Cú” là trung tâm ngôn ngữ trị liệu chuyên sâu đầu
+              tiên tại miền Bắc, thành lập năm 2016 bởi TS.BS. Nguyễn Hoàng
+              Oanh. Với nền tảng y khoa kết hợp chuyên môn sâu về âm ngữ trị
+              liệu, bác sĩ Hoàng Oanh theo đuổi hướng tiếp cận liên ngành: một
+              trẻ chậm nói không chỉ cần được dạy nói mà cần được nhìn nhận đồng
+              thời ở khía cạnh y học, giác quan, vận động, nhận thức và môi
+              trường gia đình. Đây chính là nguồn gốc của mô hình one-stop đang
+              được áp dụng tại Trung tâm. Bác sĩ trực tiếp tham gia xây dựng
+              chương trình chuyên môn, đào tạo đội ngũ chuyên viên và đồng hành
+              cùng phụ huynh trong suốt quá trình con tham gia tổ Cú, với quan
+              điểm nhất quán: gia đình là một phần của quá trình trị liệu, không
+              phải người đứng ngoài quan sát.
+            </b>
+          </div>
           <div className={"grid2"} style={{ marginTop: "22px" }}>
             <div className={"card"}>
               <h3>{data.texts.t039}</h3>
@@ -260,6 +273,13 @@ export default function ParentPage({ data }: Props) {
               <span className={"tagline"}>{data.texts.t058}</span>
               <h3>{data.texts.t059}</h3>
               <p>{data.texts.t060}</p>
+              <img
+                alt="lop-1-ngay"
+                src="/images/lop-1-ngay.jpg"
+                style={{
+                  borderRadius: "16px",
+                }}
+              />
               <div className={"price"} style={{ margin: "12px 0 10px" }}>
                 {data.texts.t061}
               </div>
@@ -271,10 +291,18 @@ export default function ParentPage({ data }: Props) {
               <span className={"tagline"}>{data.texts.t063}</span>
               <h3>{data.texts.t064}</h3>
               <p>{data.texts.t065}</p>
-              <img src='/images/day-con-247-coaching-1-1.jpg'
+              {/* <img
+                src="/images/day-con-247-coaching-1-1.jpg"
                 alt="day-con-247-coaching-1-1"
                 style={{
-                  borderRadius: '16px'
+                  borderRadius: "16px",
+                }}
+              /> */}
+              <img
+                alt="lop-8-tuan"
+                src="/images/lop-8-tuan.jpg"
+                style={{
+                  borderRadius: "16px",
                 }}
               />
               <p className={"muted"} style={{ margin: "12px 0 10px" }}>
