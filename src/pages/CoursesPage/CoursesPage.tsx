@@ -71,7 +71,7 @@ export default function CoursesPage({ data }: Props) {
           <p className="lead">
             {/* {data.texts.t004} */}
             Các khóa đào tạo đều được TS.BS Hoàng Oanh thiết kế cân đối giữa nền
-            tảng học thuật và kĩ năng lâm sàn. Mỗi khóa học có giáo trình, bộ
+            tảng học thuật và kĩ năng lâm sàng. Mỗi khóa học có giáo trình, bộ
             biểu mẫu, chỉ dẫn thực hành, sách riêng bài bản và thuận tiện sử
             dụng
           </p>
