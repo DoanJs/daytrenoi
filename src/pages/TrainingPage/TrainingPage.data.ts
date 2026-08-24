@@ -12,7 +12,7 @@ export const trainingPageMockData: TrainingPageData = {
     "t008": "Học trực tiếp · không cần nền tảng",
     "t009": "999.999đ",
     "t010": "Dạy con 24/7",
-    "t011": "Coaching 1–1 online · 8 tuần",
+    "t011": "Kèm riêng online · 8 tuần",
     "t012": "1 buổi Zoom + 1 clip mỗi tuần",
     "t013": "Cha mẹ muốn đi sâu hơn thì bước sang nhánh làm nghề, vào thẳng ",
     "t014": "Âm ngữ trị liệu Bậc 1",

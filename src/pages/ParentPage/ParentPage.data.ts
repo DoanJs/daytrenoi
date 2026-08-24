@@ -65,7 +65,7 @@ export const parentPageMockData: ParentPageData = {
     "t061": "999.999đ",
     "t062": "Xem lớp một ngày",
     "t063": "Cầm tay chỉ việc",
-    "t064": "Dạy con 24/7 — coaching 1–1 (P247)",
+    "t064": "Dạy con 24/7 — kèm riêng (P247)",
     "t065": "Tám tuần online, mỗi tuần một buổi Zoom riêng và clip bạn quay ở nhà theo kế hoạch được hướng dẫn, để trainer xem và sửa — điều mà sách và lớp nhóm không thể mang lại được.",
     "t066": "Học phí: liên hệ",
     "t067": "Số suất mỗi đợt có hạn",

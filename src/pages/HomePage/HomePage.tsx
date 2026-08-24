@@ -191,9 +191,7 @@ function HomeQuickTest() {
           <div className="eyebrow">Miễn phí · không cần để lại thông tin</div>
           <h2>Bốn bài test nhanh cho cha mẹ</h2>
           <p className="lead">
-            Bộ câu hỏi rút ra từ chính bộ bảng kiểm chúng tôi dùng trong phòng
-            khám. Anh/chị chỉ mất hai phút và thấy kết quả ngay — không phải
-            điền số điện thoại mới được xem.
+            Bộ câu hỏi rút gọn từ 1 số công cụ OWLSPEAKS sử dụng. Anh/chị không cần cung cấp thông tin cá nhân. Chỉ mất 2p để biết con cần hỗ trợ chưa.
           </p>
         </div>
 
@@ -473,14 +471,14 @@ export default function HomePage({ data }: Props) {
               <h1>
                 {data.texts.t002}
                 <br />
-                {data.texts.t003}
               </h1>
               <p className={"lead"}>
-                {data.texts.t004}
-                <b>{data.texts.t005}</b>
-                {data.texts.t006}
-                <b>{data.texts.t007}</b>
-                {data.texts.t008}
+                <b>1. Tư vấn và trị liệu cho trẻ nhỏ gặp khó khăn về phát triển.</b>
+                <br />
+                <b>2. Đào tạo thực hành Ngôn ngữ trị liệu và can thiệp sớm</b>
+                <br />
+                <b>3. Xuất bản sách, công cụ về Giáo dục và trị liệu cho trẻ em</b>
+                <br />
               </p>
               <div className={"btns"} style={{ marginTop: "22px" }}>
                 <a className={"btn p"} href={data.links.link001}>

@@ -3,7 +3,7 @@ import { HomePageData, HomeQuickTestMap } from "./HomePage.types";
 export const homePageMockData: HomePageData = {
   "texts": {
     "t001": "Dr Owl Academy · OWLSPEAKS",
-    "t002": "Thấu hiểu trẻ,",
+    "t002": "Thấu hiểu trẻ bằng khoa học, hành động đúng ngay từ đầu.",
     "t003": "đi đúng ngay từ bước đầu tiên.",
     "t004": "Khám, tư vấn và can thiệp cho trẻ có khó khăn về ",
     "t005": "ngôn ngữ, giao tiếp, phát triển",
@@ -49,7 +49,7 @@ export const homePageMockData: HomePageData = {
     "t045": "Học trực tiếp · không cần nền tảng",
     "t046": "999.999đ",
     "t047": "Dạy con 24/7",
-    "t048": "Coaching 1–1 online · 8 tuần",
+    "t048": "Kèm riêng online · 8 tuần",
     "t049": "1 buổi Zoom + 1 clip mỗi tuần",
     "t050": "Cha mẹ muốn đi sâu hơn thì bước sang nhánh làm nghề, vào thẳng ",
     "t051": "Âm ngữ trị liệu Bậc 1",

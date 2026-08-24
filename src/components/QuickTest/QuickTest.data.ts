@@ -3,7 +3,7 @@ import { QuickTestData } from "./QuickTest.types";
 export const quickTestData: QuickTestData = {
   "eyebrow": "Miễn phí · không cần để lại thông tin",
   "title": "Bốn bài test nhanh cho cha mẹ",
-  "description": "Bộ câu hỏi rút ra từ chính bộ bảng kiểm chúng tôi dùng trong phòng khám. Anh/chị chỉ mất hai phút và thấy kết quả ngay — không phải điền số điện thoại mới được xem.",
+  "description": "Bộ câu hỏi rút gọn từ 1 số công cụ OWLSPEAKS sử dụng. Anh/chị không cần cung cấp thông tin cá nhân. Chỉ mất 2p để biết con cần hỗ trợ chưa.",
   "tests": {
     "tu-ky": {
       "id": "tu-ky",
