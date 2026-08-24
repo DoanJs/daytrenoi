@@ -388,7 +388,7 @@ export const trainingPageMockData: TrainingPageData = {
     "t384": "Nhắn một câu về ca bạn đang vướng",
     "t385": "Chúng tôi sẽ chỉ đúng cấp cần học — và nói thẳng cấp nào chưa cần với bạn lúc này. Lịch khai giảng cập nhật sớm nhất ở nhóm Zalo.",
     "t386": "Nhắn Zalo 0866620583",
-    "t387": "Vào nhóm Zalo lịch khai giảng"
+    "t387": "Đăng ký ngay lộ trình DrOWL"
   },
   "images": {},
   "links": {
@@ -421,7 +421,7 @@ export const trainingPageMockData: TrainingPageData = {
     "link027": "https://zalo.me/0866620583",
     "link028": "https://zalo.me/0866620583",
     "link029": "#chuyen-giao",
-    "link030": "https://zalo.me/0866620583",
+    "link030": "https://zalo.me/g/xridls992",
     "link031": "https://docs.google.com/forms/d/1AJ0TBXX9-VOF2NLKHRAyQctIldD4lb2ycd_5ADjPYVw/viewform?edit_requested=true"
     // "link031": "https://tinyurl.com/thamgiaDrOwlAcademy"
   },
