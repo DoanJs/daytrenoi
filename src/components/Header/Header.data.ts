@@ -2,7 +2,7 @@ import { HeaderData } from "../../models/site";
 
 export const headerMockData: HeaderData = {
   "brandTitle": "Dr OWL ACADEMY",
-  "brandSubtitle": "O'speech · OWLSPEAKS",
+  "brandSubtitle": "Ngôn ngữ trị liệu - TS.BS.Hoàng Oanh",
   "owl": "🦉",
   "navItems": [
     {

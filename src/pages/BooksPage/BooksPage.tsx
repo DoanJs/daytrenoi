@@ -213,7 +213,7 @@ export default function BooksPage({ data }: Props) {
           <h1 style={{ maxWidth: "18ch" }}>
             {data.texts.t002}
             <br />
-            {data.texts.t003}
+            {/* {data.texts.t003} */}
           </h1>
           <p className={"lead"}>{data.texts.t004}</p>
         </div>

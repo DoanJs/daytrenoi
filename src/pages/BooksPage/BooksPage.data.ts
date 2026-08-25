@@ -3,9 +3,9 @@ import { BooksPageData } from "./BooksPage.types";
 export const booksPageMockData: BooksPageData = {
   "texts": {
     "t001": "Sách & học liệu",
-    "t002": "Viết bằng tiếng Việt,",
-    "t003": "cho trẻ Việt.",
-    "t004": "Bảy đầu sách — không phải bản dịch, không phải tài liệu phát tay. Từ cẩm nang cho cha mẹ đến giáo trình chuyên khoa, tất cả đều dựa trên ca lâm sàng và dữ liệu trẻ em Việt Nam.",
+    "t002": "Trẻ em Việt Nam vui chơi, phát triển và giao tiếp bằng tiếng Việt.",
+    "t003": "phát triển và giao tiếp bằng tiếng Việt.",
+    "t004": "Chắt lọc từ kiến thức và kinh nghiệm lâm sàng của 12 năm xây dựng ngành Ngôn ngữ trị liệu, đây là những cuốn sách và giáo trình chuyên khoa viết riêng cho PH và GV dùng để dạy trẻ em Việt Nam - nói rõ, nói hay và chủ động giao tiếp, hòa nhập bền vững.",
     "t005": "Cha mẹ · Tự kỷ",
     "t006": "Dạy con 24/7",
     "t007": "Giúp cha mẹ hiểu đúng về tự kỷ, can thiệp lấy gia đình làm trọng tâm, đánh giá và chọn mục tiêu cá nhân hoá. Kèm bảng kiểm và mẫu kế hoạch dạy con tại nhà dựa trên khoa học, dễ áp dụng.",
