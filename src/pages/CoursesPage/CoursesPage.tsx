@@ -389,7 +389,7 @@ export default function CoursesPage({ data }: Props) {
 
                 {/* <a
                   className="btn p"
-                  href={"https://zalo.me/0866620583"}
+                  href={"https://zalo.me/0857389318"}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -438,7 +438,7 @@ export default function CoursesPage({ data }: Props) {
           <div className="course-registration-popup">
             <CourseRegistrationForm
               course={selectedCourseForRegister}
-              zaloOaUrl="https://zalo.me/0866620583"
+              zaloOaUrl="https://zalo.me/0857389318"
               onClose={() => setSelectedCourseForRegister(null)}
               onRegistrationCreated={(registration: any) => {
                 console.log("Đã đăng ký:", registration);

@@ -143,7 +143,7 @@ export const homePageMockData: HomePageData = {
     "t139": " trên 600 trẻ em Việt Nam ba miền",
     "t140": "Tôi chưa biết bắt đầu từ đâu?",
     "t141": "Nhắn cho chúng tôi về con bạn hoặc về trẻ mà bạn đang vướng mắc. Chúng tôi sẽ chỉ đúng cửa cần vào — cần hẹn lịch khám, tham gia khoá học, hay chỉ một cuốn sách là đủ.",
-    "t142": "Nhắn Zalo 0866620583",
+    "t142": "Nhắn Zalo 0857389318",
     "t143": "Gọi ngay"
   },
   "images": {
@@ -170,8 +170,8 @@ export const homePageMockData: HomePageData = {
     "link015": "#phu-huynh/kham",
     "link016": "#lop-cha-me",
     "link017": "#dao-tao",
-    "link018": "https://zalo.me/0866620583",
-    "link019": "tel:0866620583"
+    "link018": "https://zalo.me/0857389318",
+    "link019": "tel:0857389318"
   },
   "alts": {
     "alt001": "Bộ sách và công cụ Dr Owl Academy",

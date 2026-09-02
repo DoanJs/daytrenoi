@@ -464,7 +464,7 @@ export default function ParentClassPage({ data }: Props) {
           <div className="book-order-popup">
             <BookOrderForm
               book={selectedBook}
-              zaloOaUrl="https://zalo.me/0866620583"
+              zaloOaUrl="https://zalo.me/0857389318"
               onClose={handleCloseOrder}
               onOrderCreated={(order) => {
                 console.log("Đã tạo đơn:", order);

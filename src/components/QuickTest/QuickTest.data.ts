@@ -560,7 +560,7 @@ export const quickTestData: QuickTestData = {
     },
     {
       "label": "Hỏi một câu qua Zalo",
-      "href": "https://zalo.me/0866620583",
+      "href": "https://zalo.me/0857389318",
       "external": true
     }
   ]

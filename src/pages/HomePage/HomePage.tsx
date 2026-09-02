@@ -410,7 +410,7 @@ function HomeQuickTest() {
                     </a>
                     <a
                       className="btn s"
-                      href="https://zalo.me/0866620583"
+                      href="https://zalo.me/0857389318"
                       target="_blank"
                       rel="noreferrer"
                     >

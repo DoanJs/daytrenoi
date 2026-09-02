@@ -104,11 +104,11 @@ export const parentClassPageMockData: ParentClassPageData = {
     "t100": "Rất nên. Con bạn có 2–3 buổi trị liệu một tuần, còn lại là thời gian ở nhà. Cha mẹ biết cách kéo dài mục tiêu của trị liệu viên vào sinh hoạt hằng ngày thì con tiến nhanh hơn hẳn — đây là điều nghiên cứu về can thiệp lấy gia đình làm trọng tâm đã cho thấy nhiều năm nay.",
     "t101": "Học phí kèm riêng bao nhiêu và mở lớp khi nào?",
     "t102": "Vì là kèm riêng nên số suất mỗi đợt có hạn. Nhắn Zalo ",
-    "t103": "0866620583",
+    "t103": "0857389318",
     "t104": " để biết học phí, lịch đợt gần nhất và còn suất hay không.",
     "t105": "Bắt đầu bằng một tin nhắn",
     "t106": "Kể cho chúng tôi con bạn mấy tuổi và điều bạn lo nhất. Chúng tôi sẽ nói thẳng bạn nên đi lớp một ngày, vào coaching, hay chỉ cần mua một cuốn sách là đủ.",
-    "t107": "Nhắn Zalo 0866620583",
+    "t107": "Nhắn Zalo 0857389318",
     "t108": "Gọi ngay"
   },
   "images": {
@@ -124,12 +124,12 @@ export const parentClassPageMockData: ParentClassPageData = {
     "link005": "#phu-huynh/kham",
     "link006": "#lop-cha-me/p1",
     "link007": "#lop-cha-me/p2",
-    "link008": "https://zalo.me/0866620583",
-    "link009": "https://zalo.me/0866620583",
-    "link010": "https://zalo.me/0866620583",
+    "link008": "https://zalo.me/0857389318",
+    "link009": "https://zalo.me/0857389318",
+    "link010": "https://zalo.me/0857389318",
     "link011": "#sach",
-    "link012": "https://zalo.me/0866620583",
-    "link013": "tel:0866620583"
+    "link012": "https://zalo.me/0857389318",
+    "link013": "tel:0857389318"
   },
   "alts": {
     "alt001": "Bản đồ 5 năm đầu đời của con",

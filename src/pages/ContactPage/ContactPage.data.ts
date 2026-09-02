@@ -8,11 +8,11 @@ export const contactPageMockData: ContactPageData = {
     "t004": "💬",
     "t005": "Zalo",
     "t006": "Cách nhanh nhất. Nhắn giờ hành chính, thường trả lời trong ngày.",
-    "t007": "Mở Zalo 0866620583",
+    "t007": "Mở Zalo 0857389318",
     "t008": "📞",
     "t009": "Hotline",
     "t010": "Gọi khi cần trao đổi gấp hoặc muốn đặt lịch khám ngay.",
-    "t011": "0866620583",
+    "t011": "0857389318",
     "t012": "📅",
     "t013": "Nhóm Zalo lịch khai giảng",
     "t014": "Nơi cập nhật lịch các học phần sớm nhất, không bỏ lỡ đợt đăng ký.",
@@ -43,11 +43,11 @@ export const contactPageMockData: ContactPageData = {
   },
   "images": {},
   "links": {
-    "link001": "https://zalo.me/0866620583",
-    "link002": "tel:0866620583",
+    "link001": "https://zalo.me/0857389318",
+    "link002": "tel:0857389318",
     "link003": "https://tinyurl.com/thamgiaDrOwlAcademy",
-    "link004": "https://zalo.me/0866620583",
-    "link005": "https://zalo.me/0866620583"
+    "link004": "https://zalo.me/0857389318",
+    "link005": "https://zalo.me/0857389318"
   },
   "alts": {},
   "placeholders": {}

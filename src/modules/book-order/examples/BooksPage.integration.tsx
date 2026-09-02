@@ -31,7 +31,7 @@ export default function BooksPageExample() {
         >
           <BookOrderForm
             book={selectedBook}
-            zaloOaUrl="https://zalo.me/0866620583"
+            zaloOaUrl="https://zalo.me/0857389318"
             onClose={() => setSelectedBook(null)}
           />
         </div>

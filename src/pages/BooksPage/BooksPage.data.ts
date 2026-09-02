@@ -49,7 +49,7 @@ export const booksPageMockData: BooksPageData = {
     "t039": "Đặt sách qua Zalo",
 
     "t040": "Giá bìa cập nhật đến 08/2026. Đặt sách qua Zalo ",
-    "t041": "0866620583",
+    "t041": "0857389318",
     "t042": " — nhắn tên sách và số lượng, chúng tôi báo phí giao và thời gian nhận.",
     "t043": "Bộ công cụ đi kèm khoá học",
     "t044": "Không bán lẻ",
@@ -102,17 +102,17 @@ export const booksPageMockData: BooksPageData = {
     "img010": "/images/giai-phau-phat-am-va-huong-dan-kich-am-co-so-abd6ac77.jpg"
   },
   "links": {
-    "link001": "https://zalo.me/0866620583",
-    "link002": "https://zalo.me/0866620583",
-    "link003": "https://zalo.me/0866620583",
-    "link004": "https://zalo.me/0866620583",
-    "link005": "https://zalo.me/0866620583",
-    "link006": "https://zalo.me/0866620583",
-    "link007": "https://zalo.me/0866620583",
+    "link001": "https://zalo.me/0857389318",
+    "link002": "https://zalo.me/0857389318",
+    "link003": "https://zalo.me/0857389318",
+    "link004": "https://zalo.me/0857389318",
+    "link005": "https://zalo.me/0857389318",
+    "link006": "https://zalo.me/0857389318",
+    "link007": "https://zalo.me/0857389318",
     "link008": "#dao-tao/mxlh",
     "link009": "#chuyen-giao",
-    "link010": "https://zalo.me/0866620583",
-    // "link011": "tel:0866620583"
+    "link010": "https://zalo.me/0857389318",
+    // "link011": "tel:0857389318"
     "link011": "https://docs.google.com/forms/d/e/1FAIpQLScCQJEBuiUfjCbUBWEHFuhP5i_kFfQThpzQ3psLKDrBK55iEQ/viewform"
   },
   "alts": {

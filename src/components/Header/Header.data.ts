@@ -46,6 +46,6 @@ export const headerMockData: HeaderData = {
       "page": "lien-he"
     }
   ],
-  "zaloLabel": "Zalo 0866620583",
-  "zaloUrl": "https://zalo.me/0866620583"
+  "zaloLabel": "Zalo 0857389318",
+  "zaloUrl": "https://zalo.me/0857389318"
 };

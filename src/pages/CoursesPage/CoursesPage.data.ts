@@ -28,12 +28,12 @@ export const coursesPageMockData: CoursesPageData = {
     t024: "Chưa biết nên chọn khóa nào?",
     t025: "Nhắn cho chúng tôi mục tiêu học tập hoặc công việc hiện tại. Chúng tôi sẽ gợi ý khóa phù hợp trước khi bạn đăng ký.",
     t026: "Hỏi qua nhóm Zalo",
-    t027: "Gọi 0866620583"
+    t027: "Gọi 0857389318"
   },
   images: {},
   links: {
     link001: "https://zalo.me/g/xridls992",
-    link002: "tel:0866620583"
+    link002: "tel:0857389318"
   },
   alts: {},
   placeholders: {}

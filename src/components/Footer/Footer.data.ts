@@ -60,8 +60,8 @@ export const footerMockData: FooterData = {
       "title": "Liên hệ",
       "links": [
         {
-          "label": "Hotline · Zalo: 0866620583",
-          "href": "https://zalo.me/0866620583"
+          "label": "Hotline · Zalo: 0857389318",
+          "href": "https://zalo.me/0857389318"
         },
         {
           "label": "Nhóm Zalo cập nhật lịch",
@@ -83,5 +83,5 @@ export const footerMockData: FooterData = {
     }
   ],
   "copyright": "© 2026 Dr Owl Academy · OWLSPEAKS. Nội dung và giáo trình thuộc bản quyền tác giả.",
-  "bottomText": "378 Minh Khai, Hà Nội · 0866620583 · amngutrilieutreem@gmail.com"
+  "bottomText": "378 Minh Khai, Hà Nội · 0857389318 · amngutrilieutreem@gmail.com"
 };

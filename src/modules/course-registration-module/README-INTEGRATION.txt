@@ -49,7 +49,7 @@ const [selectedCourseForRegister, setSelectedCourseForRegister] =
     <div className="course-registration-popup">
       <CourseRegistrationForm
         course={selectedCourseForRegister}
-        zaloOaUrl="https://zalo.me/0866620583"
+        zaloOaUrl="https://zalo.me/0857389318"
         onClose={() => setSelectedCourseForRegister(null)}
         onRegistrationCreated={(registration) => {
           console.log("Đã đăng ký khóa học:", registration);

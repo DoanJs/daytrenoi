@@ -89,21 +89,21 @@ export const transferPageMockData: TransferPageData = {
     "t085": "Thường là đào tạo in-house Âm ngữ trị liệu Bậc 1 và Bậc 2 cho toàn đội trước, để cả trung tâm dùng chung một chuẩn quan sát và một bộ biểu mẫu. Sau đó cử một đến hai người đi tiếp chuyên khoa và nhận giám sát lâm sàng, làm người chuẩn hoá chuyên môn nội bộ.",
     "t086": "Chi phí thế nào?",
     "t087": "Bốn hạng mục tính phí riêng từng mức, tuỳ quy mô đội ngũ, số buổi giám sát và hình thức (tại chỗ hay online). Nhắn Zalo ",
-    "t088": "0866620583",
+    "t088": "0857389318",
     "t089": " để đặt một buổi trao đổi — buổi này không tính phí.",
     "t090": "Đặt một buổi trao đổi",
     "t091": "Kể cho chúng tôi quy mô đội của bạn và điều bạn muốn chuẩn hoá. Chúng tôi sẽ đề xuất đúng hạng mục cần — và nói rõ hạng mục nào chưa cần thiết lúc này.",
-    "t092": "Nhắn Zalo 0866620583",
+    "t092": "Nhắn Zalo 0857389318",
     "t093": "Gọi ngay"
   },
   "images": {},
   "links": {
-    "link001": "https://zalo.me/0866620583",
+    "link001": "https://zalo.me/0857389318",
     "link002": "#dao-tao",
-    "link003": "https://zalo.me/0866620583",
-    "link004": "https://zalo.me/0866620583",
-    "link005": "https://zalo.me/0866620583",
-    "link006": "tel:0866620583"
+    "link003": "https://zalo.me/0857389318",
+    "link004": "https://zalo.me/0857389318",
+    "link005": "https://zalo.me/0857389318",
+    "link006": "tel:0857389318"
   },
   "alts": {},
   "placeholders": {}
