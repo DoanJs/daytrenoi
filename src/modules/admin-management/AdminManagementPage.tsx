@@ -5,26 +5,29 @@ import "./AdminManagementPage.css";
 import type {
   AddBookInput,
   AddCourseInput,
+  AddKnowledgeInput,
   AdminTab,
   AdminToastState,
   BookModel,
   BookOrderModel,
   CourseModel,
-  UpdateBookOrderInput,
+  KnowledgeModel,
 } from "./types/admin.types";
 
 import {
   adminAddBook,
   adminAddCourse,
+  adminAddKnowledge,
   adminDeleteBook,
-  adminDeleteBookOrder,
   adminDeleteCourse,
+  adminDeleteKnowledge,
   adminGetAllBooks,
   adminGetAllCourses,
+  adminGetAllKnowledge,
   adminGetBookOrders,
   adminUpdateBook,
-  adminUpdateBookOrder,
   adminUpdateCourse,
+  adminUpdateKnowledge,
 } from "./services/adminDataService";
 
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
@@ -33,13 +36,12 @@ import AdminBooks from "./pages/AdminBooks/AdminBooks";
 
 import AdminCourses from "./pages/AdminCourses/AdminCourses";
 
-import AdminBookOrders from "./pages/AdminBookOrders/AdminBookOrders";
-
 import AdminLoadingOverlay from "./components/AdminLoadingOverlay/AdminLoadingOverlay";
 
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase.config";
 import AdminToast from "./components/AdminToast/AdminToast";
+import AdminKnowledge from "./pages/AdminKnowledge/AdminKnowledge";
 
 const emptyToast: AdminToastState = {
   show: false,
@@ -55,6 +57,8 @@ export default function AdminManagementPage() {
   const [courses, setCourses] = useState<CourseModel[]>([]);
 
   const [orders, setOrders] = useState<BookOrderModel[]>([]);
+
+  const [knowledges, setKnowledges] = useState<KnowledgeModel[]>([]);
 
   const [loading, setLoading] = useState(true);
 
@@ -73,23 +77,52 @@ export default function AdminManagementPage() {
     [],
   );
 
+  // const loadAll = useCallback(async () => {
+  //   try {
+  //     setLoading(true);
+
+  //     setLoadingText("Đang tải dữ liệu quản trị...");
+
+  //     const [bookData, courseData, orderData] = await Promise.all([
+  //       adminGetAllBooks(),
+  //       adminGetAllCourses(),
+  //       adminGetBookOrders(),
+  //     ]);
+
+  //     setBooks(bookData);
+
+  //     setCourses(courseData);
+
+  //     setOrders(orderData);
+  //   } catch (error) {
+  //     console.error("Admin load error:", error);
+
+  //     showToast("Không thể tải dữ liệu Firestore.", "error");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }, [showToast]);
   const loadAll = useCallback(async () => {
     try {
       setLoading(true);
 
       setLoadingText("Đang tải dữ liệu quản trị...");
 
-      const [bookData, courseData, orderData] = await Promise.all([
-        adminGetAllBooks(),
-        adminGetAllCourses(),
-        adminGetBookOrders(),
-      ]);
+      const [bookData, courseData, orderData, knowledgeData] =
+        await Promise.all([
+          adminGetAllBooks(),
+          adminGetAllCourses(),
+          adminGetBookOrders(),
+          adminGetAllKnowledge(),
+        ]);
 
       setBooks(bookData);
 
       setCourses(courseData);
 
       setOrders(orderData);
+
+      setKnowledges(knowledgeData);
     } catch (error) {
       console.error("Admin load error:", error);
 
@@ -152,7 +185,7 @@ export default function AdminManagementPage() {
           <div>
             <div className="admin-brand">
               <a className="mark" href="/#index">
-                  <img src="/images/speech-therapy-owl-d5c2c84c.png" alt=""/>
+                <img src="/images/speech-therapy-owl-d5c2c84c.png" alt="" />
               </a>
 
               <b>OWLSPEAKS</b>
@@ -171,7 +204,7 @@ export default function AdminManagementPage() {
                 <span className="label">Tổng quan</span>
               </button>
 
-              <button
+              {/* <button
                 type="button"
                 className={tab === "bookOrders" ? "active" : ""}
                 onClick={() => setTab("bookOrders")}
@@ -179,7 +212,7 @@ export default function AdminManagementPage() {
                 <span className="icon">◉</span>
 
                 <span className="label">Đơn đặt sách</span>
-              </button>
+              </button> */}
 
               <button
                 type="button"
@@ -200,6 +233,15 @@ export default function AdminManagementPage() {
 
                 <span className="label">Khóa học</span>
               </button>
+              <button
+                type="button"
+                className={tab === "knowledge" ? "active" : ""}
+                onClick={() => setTab("knowledge")}
+              >
+                <span className="icon">◉</span>
+
+                <span className="label">Kiến thức khoa học</span>
+              </button>
             </nav>
           </div>
           <button type="button" className="admin-logout" onClick={handleLogout}>
@@ -214,7 +256,7 @@ export default function AdminManagementPage() {
             <AdminDashboard books={books} courses={courses} orders={orders} />
           )}
 
-          {tab === "bookOrders" && (
+          {/* {tab === "bookOrders" && (
             <AdminBookOrders
               orders={orders}
               onUpdate={(id, data: UpdateBookOrderInput) =>
@@ -230,7 +272,7 @@ export default function AdminManagementPage() {
                 )
               }
             />
-          )}
+          )} */}
 
           {tab === "books" && (
             <AdminBooks
@@ -281,6 +323,32 @@ export default function AdminManagementPage() {
               onDelete={(id) =>
                 runAction("Đang xóa khóa học...", "Đã xóa khóa học.", () =>
                   adminDeleteCourse(id),
+                )
+              }
+            />
+          )}
+          {tab === "knowledge" && (
+            <AdminKnowledge
+              knowledges={knowledges}
+              onAdd={(data: AddKnowledgeInput) =>
+                runAction(
+                  "Đang thêm bài viết...",
+                  "Đã thêm bài viết.",
+                  async () => {
+                    await adminAddKnowledge(data);
+                  },
+                )
+              }
+              onUpdate={(id, data) =>
+                runAction(
+                  "Đang cập nhật bài viết...",
+                  "Đã cập nhật bài viết.",
+                  () => adminUpdateKnowledge(id, data),
+                )
+              }
+              onDelete={(id) =>
+                runAction("Đang xóa bài viết...", "Đã xóa bài viết.", () =>
+                  adminDeleteKnowledge(id),
                 )
               }
             />

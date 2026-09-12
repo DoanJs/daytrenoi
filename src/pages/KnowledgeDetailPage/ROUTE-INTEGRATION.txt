@@ -1,0 +1,52 @@
+/*
+=====================================================
+1. SỬA LINK TRONG KnowledgePage.tsx
+=====================================================
+
+Thay:
+
+href={`#kien-thuc-khoa-hoc/${article.slug}`}
+
+bằng:
+
+href={`#/kien-thuc-khoa-hoc/${article.slug}`}
+
+
+=====================================================
+2. APP / CUSTOM HASH ROUTER
+=====================================================
+
+URL mong muốn:
+
+http://localhost:3000/#/kien-thuc-khoa-hoc/mat-dieu-khien-chu-y-loi-noi-o-tre-nho-la-gi
+
+
+Nếu router của bạn đang lấy hash, cần chuẩn hóa như sau:
+
+const hashPath = window.location.hash
+  .replace(/^#\/?/, "")
+  .replace(/\/+$/, "");
+
+const parts = hashPath.split("/").filter(Boolean);
+
+const page = parts[0] || "trang-chu";
+const slug = parts.slice(1).join("/");
+
+
+Sau đó ở App.tsx:
+
+import KnowledgeDetailPage from "./pages/KnowledgeDetailPage/KnowledgeDetailPage";
+
+case "kien-thuc-khoa-hoc":
+  if (slug) {
+    return <KnowledgeDetailPage slug={slug} />;
+  }
+
+  return <KnowledgePage data={knowledgePageMockData} />;
+
+
+LƯU Ý:
+Nếu useHashRoute.ts hiện tại chỉ trả về "page",
+hãy gửi file đó để sửa chính xác theo router hiện có.
+Không nên thêm từng slug vào whitelist.
+*/

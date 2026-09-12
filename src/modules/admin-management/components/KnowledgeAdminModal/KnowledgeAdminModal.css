@@ -1,0 +1,763 @@
+/* =====================================================
+   KNOWLEDGE ADMIN MODAL
+   ===================================================== */
+
+.admin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(15, 23, 42, 0.48);
+  backdrop-filter: blur(3px);
+
+  overflow-y: auto;
+}
+
+/* =====================================================
+   MODAL
+   ===================================================== */
+
+.admin-modal {
+  width: min(760px, 100%);
+  max-height: calc(100vh - 48px);
+
+  display: flex;
+  flex-direction: column;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.18),
+    0 8px 20px rgba(15, 23, 42, 0.08);
+
+  overflow: hidden;
+}
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.admin-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 24px 26px 20px;
+
+  border-bottom: 1px solid #edf0ee;
+}
+
+.admin-modal-header .eyebrow {
+  margin-bottom: 5px;
+
+  color: #6d9b82;
+
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.admin-modal-header h2 {
+  margin: 0;
+
+  color: #263b32;
+
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.admin-modal-close {
+  width: 38px;
+  height: 38px;
+
+  flex: 0 0 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid #e5e9e7;
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  color: #6b756f;
+
+  font-size: 25px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.admin-modal-close:hover {
+  background: #f4f8f5;
+  border-color: #cbd9d0;
+
+  color: #2f6b4a;
+}
+
+/* =====================================================
+   FORM BODY
+   ===================================================== */
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+
+  padding: 24px 26px;
+
+  overflow-y: auto;
+}
+
+.admin-form-group {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-form-group.full {
+  grid-column: 1 / -1;
+}
+
+.admin-form-group > label {
+  color: #3e4f46;
+
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.admin-form-group .required {
+  margin-left: 4px;
+
+  color: #d95050;
+}
+
+.admin-form-group input:not([type="checkbox"]),
+.admin-form-group textarea,
+.admin-form-group select {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 11px 13px;
+
+  border: 1px solid #dce3df;
+  border-radius: 10px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #263b32;
+
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.admin-form-group textarea {
+  min-height: 105px;
+
+  resize: vertical;
+}
+
+.admin-form-group input::placeholder,
+.admin-form-group textarea::placeholder {
+  color: #a1aaa5;
+}
+
+.admin-form-group input:focus,
+.admin-form-group textarea:focus,
+.admin-form-group select:focus {
+  border-color: #77a88b;
+
+  box-shadow: 0 0 0 3px rgba(119, 168, 139, 0.13);
+}
+
+/* =====================================================
+   IMAGE UPLOAD
+   ===================================================== */
+
+.admin-image-upload {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 14px;
+
+  border: 1px dashed #ccd9d1;
+  border-radius: 14px;
+
+  background: #fafcfb;
+}
+
+.admin-image-preview {
+  width: 150px;
+  height: 100px;
+
+  flex: 0 0 150px;
+
+  overflow: hidden;
+
+  border: 1px solid #e0e7e3;
+  border-radius: 12px;
+
+  background: #f1f5f2;
+}
+
+.admin-image-preview img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+.admin-image-empty {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px;
+  box-sizing: border-box;
+
+  color: #909b95;
+
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.admin-image-upload-actions {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* =====================================================
+   CHECKBOX
+   ===================================================== */
+
+.admin-form-group > label.admin-check-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  width: fit-content;
+
+  cursor: pointer;
+}
+
+.admin-check-row input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+
+  margin: 0;
+
+  accent-color: #4f8b68;
+
+  cursor: pointer;
+}
+
+.admin-check-row span {
+  color: #405047;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.admin-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+
+  padding: 18px 26px;
+
+  border-top: 1px solid #edf0ee;
+
+  background: #fbfcfb;
+}
+
+/*
+  Nếu AdminManagementPage.css đã có .admin-btn
+  thì phần này có thể dùng chung.
+  Các rule dưới đây chỉ đảm bảo modal vẫn hiển thị đẹp.
+*/
+
+.admin-modal .admin-btn {
+  min-height: 40px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 9px 17px;
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.admin-modal .admin-btn:active {
+  transform: translateY(1px);
+}
+
+.admin-modal .admin-btn.primary {
+  border-color: #46795c;
+
+  background: #46795c;
+
+  color: #ffffff;
+}
+
+.admin-modal .admin-btn.primary:hover {
+  background: #3a694e;
+  border-color: #3a694e;
+}
+
+.admin-modal .admin-btn.secondary {
+  border-color: #dce3df;
+
+  background: #ffffff;
+
+  color: #4b5b52;
+}
+
+.admin-modal .admin-btn.secondary:hover {
+  background: #f4f7f5;
+  border-color: #cbd7d0;
+}
+
+/* Xóa ảnh */
+
+.admin-modal .admin-action-link {
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #4f7f64;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.admin-modal .admin-action-link:hover {
+  text-decoration: underline;
+}
+
+.admin-modal .admin-action-link.danger {
+  color: #c94c4c;
+}
+
+/* =====================================================
+   SCROLLBAR
+   ===================================================== */
+
+.admin-form-grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+.admin-form-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-form-grid::-webkit-scrollbar-thumb {
+  background: #d5ddd8;
+
+  border-radius: 20px;
+}
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 700px) {
+  .admin-modal-overlay {
+    align-items: flex-end;
+
+    padding: 0;
+  }
+
+  .admin-modal {
+    width: 100%;
+    max-height: 92vh;
+
+    border-radius: 20px 20px 0 0;
+  }
+
+  .admin-modal-header {
+    padding: 20px 18px 16px;
+  }
+
+  .admin-modal-header h2 {
+    font-size: 20px;
+  }
+
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+
+    padding: 20px 18px;
+  }
+
+  .admin-form-group.full {
+    grid-column: auto;
+  }
+
+  .admin-image-upload {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-image-preview {
+    width: 100%;
+    height: 180px;
+
+    flex-basis: auto;
+  }
+
+  .admin-modal-footer {
+    padding: 14px 18px;
+
+    position: sticky;
+    bottom: 0;
+
+    z-index: 2;
+  }
+
+  .admin-modal-footer .admin-btn {
+    flex: 1;
+  }
+}
+
+@media (max-width: 420px) {
+  .admin-modal-header {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .admin-form-grid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .admin-modal-footer {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .admin-image-preview {
+    height: 150px;
+  }
+}
+/* ====================OPTIONS================== */
+/* =====================================================
+   KNOWLEDGE MODAL
+   ===================================================== */
+
+.knowledge-admin-modal {
+  width: min(920px, 100%);
+}
+
+/* Slug */
+
+.knowledge-slug-input {
+  display: flex;
+  align-items: stretch;
+
+  width: 100%;
+
+  border: 1px solid #dce3df;
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  background: #fff;
+}
+
+.knowledge-slug-input:focus-within {
+  border-color: #77a88b;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(119, 168, 139, 0.13);
+}
+
+.knowledge-slug-input > span {
+  display: flex;
+  align-items: center;
+
+  padding: 0 12px;
+
+  border-right: 1px solid #e4e9e6;
+
+  background: #f5f8f6;
+
+  color: #79857e;
+
+  font-size: 13px;
+
+  white-space: nowrap;
+}
+
+.knowledge-slug-input input {
+  flex: 1;
+
+  min-width: 0;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  box-shadow: none !important;
+}
+
+.admin-form-hint {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #8a958f;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* =====================================================
+   RICH TEXT EDITOR
+   ===================================================== */
+
+.knowledge-editor {
+  overflow: hidden;
+
+  border: 1px solid #dce3df;
+  border-radius: 12px;
+
+  background: #fff;
+}
+
+.knowledge-editor:focus-within {
+  border-color: #77a88b;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(119, 168, 139, 0.13);
+}
+
+.knowledge-editor-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 5px;
+
+  padding: 9px 10px;
+
+  border-bottom: 1px solid #e5ebe7;
+
+  background: #f7f9f8;
+}
+
+.knowledge-editor-toolbar button {
+  min-width: 34px;
+  height: 32px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 9px;
+
+  border: 1px solid transparent;
+  border-radius: 7px;
+
+  background: transparent;
+
+  color: #46534c;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.knowledge-editor-toolbar button:hover {
+  border-color: #d8e1dc;
+
+  background: #fff;
+}
+
+.knowledge-editor-toolbar > span {
+  width: 1px;
+  height: 22px;
+
+  margin: 0 3px;
+
+  background: #dce3df;
+}
+
+/* Vùng soạn thảo */
+
+.knowledge-editor-content {
+  min-height: 360px;
+  max-height: 550px;
+
+  padding: 22px;
+
+  overflow-y: auto;
+
+  outline: none;
+
+  color: #26352d;
+
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.knowledge-editor-content:empty::before {
+  content: attr(data-placeholder);
+
+  color: #a1aaa5;
+
+  pointer-events: none;
+}
+
+.knowledge-editor-content p {
+  margin:
+    0
+    0
+    14px;
+}
+
+.knowledge-editor-content h2 {
+  margin:
+    24px
+    0
+    10px;
+
+  color: #25382e;
+
+  font-size: 25px;
+  line-height: 1.3;
+}
+
+.knowledge-editor-content h3 {
+  margin:
+    20px
+    0
+    8px;
+
+  color: #25382e;
+
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.knowledge-editor-content ul,
+.knowledge-editor-content ol {
+  margin:
+    12px
+    0
+    18px;
+
+  padding-left: 28px;
+}
+
+.knowledge-editor-content li {
+  margin-bottom: 8px;
+}
+
+.knowledge-editor-content a {
+  color: #3976d3;
+
+  text-decoration: underline;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .knowledge-admin-modal {
+    width: 100%;
+  }
+
+  .knowledge-slug-input {
+    flex-direction: column;
+  }
+
+  .knowledge-slug-input > span {
+    padding: 8px 12px;
+
+    border-right: 0;
+    border-bottom: 1px solid #e4e9e6;
+  }
+
+  .knowledge-editor-toolbar {
+    gap: 4px;
+  }
+
+  .knowledge-editor-content {
+    min-height: 300px;
+
+    padding: 16px;
+
+    font-size: 14px;
+  }
+}

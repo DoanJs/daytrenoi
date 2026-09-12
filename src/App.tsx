@@ -10,22 +10,28 @@ import TransferPage from "./pages/TransferPage/TransferPage";
 import BooksPage from "./pages/BooksPage/BooksPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import { useHashRoute } from "./hooks/useHashRoute";
-import { getSiteData, mockSiteData, SiteData } from "./services/siteDataService";
+import {
+  getSiteData,
+  mockSiteData,
+  SiteData,
+} from "./services/siteDataService";
 import { AdminManagementPage } from "./modules/admin-management";
 import AdminGuard from "./modules/admin-management/auth/AdminGuard";
 import CoursesPage from "./pages/CoursesPage/CoursesPage";
 import {
-    ChamNoiPage,
-    GiacQuanPage,
-    KheHoMoiVomPage,
-    MatTuPage,
-    NoiNgongPage,
-    TuKyPage,
-  } from "./pages/parent-topics";
-
+  ChamNoiPage,
+  GiacQuanPage,
+  KheHoMoiVomPage,
+  MatTuPage,
+  NoiNgongPage,
+  TuKyPage,
+} from "./pages/parent-topics";
+import KnowledgePage from "./pages/KnowledgePage/KnowledgePage";
+import { knowledgePageMockData } from "./pages/KnowledgePage/KnowledgePage.data";
+import KnowledgeDetailPage from "./pages/KnowledgeDetailPage/KnowledgeDetailPage";
 
 export default function App() {
-  const { page, anchor } = useHashRoute();
+  const { page, anchor, slug } = useHashRoute();
   const [siteData, setSiteData] = useState<SiteData>(mockSiteData);
 
   useEffect(() => {
@@ -50,33 +56,33 @@ export default function App() {
    * ========================================
    */
   if (page === "admin") {
-  return (
-    <AdminGuard>
-      <AdminManagementPage />
-    </AdminGuard>
-  );
-}
+    return (
+      <AdminGuard>
+        <AdminManagementPage />
+      </AdminGuard>
+    );
+  }
 
   const renderPage = () => {
     switch (page) {
-       case "phu-huynh": {
-    switch (anchor) {
-      case "cham-noi":
-        return <ChamNoiPage />;
-      case "giac-quan":
-        return <GiacQuanPage />;
-      case "khe-ho-moi-vom":
-        return <KheHoMoiVomPage />;
-      case "mat-tu":
-        return <MatTuPage />;
-      case "noi-ngong":
-        return <NoiNgongPage />;
-      case "tu-ky":
-        return <TuKyPage />;
-      default:
-        return <ParentPage data={siteData.parent} />;
-    }
-  }
+      case "phu-huynh": {
+        switch (anchor) {
+          case "cham-noi":
+            return <ChamNoiPage />;
+          case "giac-quan":
+            return <GiacQuanPage />;
+          case "khe-ho-moi-vom":
+            return <KheHoMoiVomPage />;
+          case "mat-tu":
+            return <MatTuPage />;
+          case "noi-ngong":
+            return <NoiNgongPage />;
+          case "tu-ky":
+            return <TuKyPage />;
+          default:
+            return <ParentPage data={siteData.parent} />;
+        }
+      }
 
       case "lop-cha-me":
         return <ParentClassPage data={siteData.parentClass} />;
@@ -88,6 +94,12 @@ export default function App() {
         return <BooksPage data={siteData.books} />;
       case "khoa-hoc":
         return <CoursesPage data={siteData.courses} />;
+      case "kien-thuc-khoa-hoc":
+        if (slug) {
+          return <KnowledgeDetailPage slug={slug} />;
+        }
+
+        return <KnowledgePage data={knowledgePageMockData} />;
       case "lien-he":
         return <ContactPage data={siteData.contact} />;
       case "index":

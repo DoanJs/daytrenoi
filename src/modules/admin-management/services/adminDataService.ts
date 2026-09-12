@@ -16,17 +16,21 @@ import { db } from "../../../firebase.config";
 import type {
   AddBookInput,
   AddCourseInput,
+  AddKnowledgeInput,
   BookModel,
   BookOrderModel,
   CourseModel,
+  KnowledgeModel,
   UpdateBookInput,
   UpdateBookOrderInput,
   UpdateCourseInput,
+  UpdateKnowledgeInput,
 } from "../types/admin.types";
 
 const BOOKS_COLLECTION = "books";
 const COURSES_COLLECTION = "courses";
 const BOOK_ORDERS_COLLECTION = "bookOrders";
+const KNOWLEDGE_COLLECTION = "knowledgeArticles";
 
 /* =====================================================
  * BOOKS
@@ -159,4 +163,60 @@ export const adminUpdateBookOrder = async (
 
 export const adminDeleteBookOrder = async (id: string): Promise<void> => {
   await deleteDoc(doc(db, BOOK_ORDERS_COLLECTION, id));
+};
+
+/* =====================================================
+ * KNOWLEDGE
+ * ===================================================== */
+
+export const adminGetAllKnowledge = async (): Promise<KnowledgeModel[]> => {
+  const snap = await getDocs(
+    query(
+      collection(db, KNOWLEDGE_COLLECTION),
+      orderBy("sortOrder", "asc"),
+    ),
+  );
+
+  return snap.docs.map((docSnap) => ({
+    id: docSnap.id,
+    ...docSnap.data(),
+  })) as KnowledgeModel[];
+};
+
+export const adminAddKnowledge = async (
+  data: AddKnowledgeInput,
+): Promise<KnowledgeModel> => {
+  const ref = doc(collection(db, KNOWLEDGE_COLLECTION));
+
+  const payload = {
+    ...data,
+    id: ref.id,
+    createAt: serverTimestamp(),
+    updateAt: serverTimestamp(),
+  };
+
+  await setDoc(ref, payload);
+
+  return {
+    ...data,
+    id: ref.id,
+    createAt: Timestamp.now(),
+    updateAt: Timestamp.now(),
+  } as KnowledgeModel;
+};
+
+export const adminUpdateKnowledge = async (
+  id: string,
+  updates: UpdateKnowledgeInput,
+): Promise<void> => {
+  await updateDoc(doc(db, KNOWLEDGE_COLLECTION, id), {
+    ...updates,
+    updateAt: serverTimestamp(),
+  });
+};
+
+export const adminDeleteKnowledge = async (
+  id: string,
+): Promise<void> => {
+  await deleteDoc(doc(db, KNOWLEDGE_COLLECTION, id));
 };

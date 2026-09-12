@@ -1,14 +1,14 @@
-import { headerMockData } from "../components/Header/Header.data";
-import { footerMockData } from "../components/Footer/Footer.data";
 import { floatingActionsMockData } from "../components/FloatingActions/FloatingActions.data";
-import { homePageMockData } from "../pages/HomePage/HomePage.data";
-import { parentPageMockData } from "../pages/ParentPage/ParentPage.data";
-import { parentClassPageMockData } from "../pages/ParentClassPage/ParentClassPage.data";
-import { trainingPageMockData } from "../pages/TrainingPage/TrainingPage.data";
-import { transferPageMockData } from "../pages/TransferPage/TransferPage.data";
+import { footerMockData } from "../components/Footer/Footer.data";
+import { headerMockData } from "../components/Header/Header.data";
 import { booksPageMockData } from "../pages/BooksPage/BooksPage.data";
 import { contactPageMockData } from "../pages/ContactPage/ContactPage.data";
 import { coursesPageMockData } from "../pages/CoursesPage/CoursesPage.data";
+import { homePageMockData } from "../pages/HomePage/HomePage.data";
+import { parentClassPageMockData } from "../pages/ParentClassPage/ParentClassPage.data";
+import { parentPageMockData } from "../pages/ParentPage/ParentPage.data";
+import { trainingPageMockData } from "../pages/TrainingPage/TrainingPage.data";
+import { transferPageMockData } from "../pages/TransferPage/TransferPage.data";
 
 export const mockSiteData = {
   header: headerMockData,
@@ -21,7 +21,7 @@ export const mockSiteData = {
   transfer: transferPageMockData,
   books: booksPageMockData,
   courses: coursesPageMockData,
-  contact: contactPageMockData
+  contact: contactPageMockData,
 };
 
 export type SiteData = typeof mockSiteData;

@@ -37,8 +37,8 @@ export const headerMockData: HeaderData = {
     },
     {
       "label": "Kiến thức khoa học",
-      "href": "https://bacsihoangoanh.edubit.vn/",
-      "page": "lop-cha-me"
+      "href": "#kien-thuc-khoa-hoc",
+      "page": "kien-thuc-khoa-hoc"
     },
     {
       "label": "Liên hệ",

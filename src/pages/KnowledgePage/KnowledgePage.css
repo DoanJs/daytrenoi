@@ -1,0 +1,94 @@
+/* Giữ phong cách tương tự CoursesPage */
+
+.knowledge-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.knowledge-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+  transition: .18s;
+}
+
+.knowledge-card:hover {
+  border-color: var(--o-l);
+  box-shadow: 0 10px 28px rgba(36, 28, 22, .09);
+  transform: translateY(-2px);
+}
+
+.knowledge-card .ph {
+  background: linear-gradient(160deg, #FBF2EA, #F4E6DA);
+  padding: 22px;
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+}
+
+.knowledge-card .ph img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.knowledge-card .bd {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.knowledge-card h3 {
+  font-size: 17px;
+  margin-bottom: 7px;
+  line-height: 1.35;
+}
+
+.knowledge-card p {
+  font-size: 13.5px;
+  color: var(--ink2);
+  flex: 1;
+  line-height: 1.55;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.knowledge-meta {
+  display: grid;
+  gap: 7px;
+  margin: 10px 0 14px;
+  font-size: 13px;
+  color: var(--ink2);
+}
+
+.knowledge-meta b {
+  color: var(--ink);
+}
+
+.knowledge-actions {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+.knowledge-actions .btn {
+  flex: 1 1 150px;
+  justify-content: center;
+}
+
+@media(max-width: 720px) {
+  .knowledge-list {
+    grid-template-columns: 1fr;
+  }
+}
